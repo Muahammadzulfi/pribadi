@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gallery | Foto & Video Kenangan Kita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cinta: {
+                            lembut: '#FFF5F8',
+                            merahMuda: '#FFD6E0',
+                            merahSedang: '#FF8FA3',
+                            merahTua: '#E63963',
+                            unguMuda: '#F0E6FF',
+                            teks: '#4A235A'
+                        }
+                    },
+                    fontFamily: {
+                        romantis: ['"Great Vibes"', 'cursive', 'serif'],
+                        utama: ['"Inter"', 'sans-serif']
+                    },
+                    screens: {
+                        'xs': '360px',
+                        'sm': '480px',
+                        'md': '768px',
+                        'lg': '1024px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .font-romantis {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Animasi Hati Berdetak */
+        .hati {
+            display: inline-block;
+            width: 24px;
+            height: 20px;
+            position: relative;
+            margin: 0 6px;
+        }
+        .hati::before,
+        .hati::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 12px;
+            height: 18px;
+            background: #E63963;
+            border-radius: 50px 50px 0 0;
+        }
+        .hati::before {
+            left: 12px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .hati::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        .animasi-detak {
+            animation: detak 1.6s ease-in-out infinite;
+        }
+        @keyframes detak {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Animasi Muncul */
+        .muncul {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gaya Item Foto & Video */
+        .media-item {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(230, 57, 99, 0.2);
+        }
+        .media-item img,
+        .media-item video {
+            transition: transform 0.4s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .media-item:hover img,
+        .media-item:hover video {
+            transform: scale(1.08);
+        }
+
+        /* Ikon Putar di Video */
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.85);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #E63963;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .media-item:hover .play-icon {
+            background: #fff;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Modal Layar Penuh */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-konten {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+        }
+        .tutup {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 10000;
+        }
+        .tutup:hover {
+            color: #FF8FA3;
+            transform: scale(1.1);
+        }
+
+        /* Responsif Navigasi */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.4rem;
+            }
+            .nav-menu a {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-cinta-teks">
+
+    <!-- Navigasi Lengkap -->
+    <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2">
+                    <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
+                    <span class="font-semibold text-base sm:text-lg">Beranda</span>
+                </a>
+
+                <!-- Menu Navigasi Lengkap -->
+                <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
+                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-book"></i> Cerita Kita
+                    </a>
+                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-merahTua font-medium underline bg-cinta-merahMuda/40 text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg">
+                        <i class="fa fa-camera"></i> Galeri
+                    </a>
+                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-envelope"></i> Surat Cinta
+                    </a>
+                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-star"></i> Impian
+                    </a>
+                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-lock"></i> Pesan Rahasia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Bagian Judul -->
+    <section class="pt-32 pb-6 text-center muncul">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <i class="fa fa-camera text-cinta-merahTua text-3xl sm:text-4xl"></i>
+                <h1 class="font-romantis text-[clamp(2.2rem,7vw,3.5rem)] text-cinta-merahTua">Gallery Kenangan</h1>
+                <i class="fa fa-film text-cinta-merahTua text-3xl sm:text-4xl"></i>
+            </div>
+            <p class="text-base sm:text-lg text-cinta-teks/80 max-w-xl mx-auto mb-4">
+                Foto & Video kenangan indah Muhammad Zulfi & Alifah Azzahra Kusuma Putri ❤️
+            </p>
+            <!-- Tombol Link Google Drive -->
+            <a href="https://drive.google.com/drive/folders/1o4oU2Os7R3-pA1xCHw_3313N1jWUFfwi?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-cinta-merahSedang hover:bg-cinta-merahTua text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow">
+                <i class="fa fa-google-drive"></i> Lihat Semua Foto Lengkap di Google Drive
+            </a>
+        </div>
+    </section>
+
+    <!-- Bagian Galeri Foto & Video -->
+    <section class="pb-20 pt-8">
+        <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+
+                <!-- === FOTO === -->
+                <!-- Foto 1 -->
+                <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/f1.jpeg')" style="animation-delay: 0.2s">
+                    <img src="assets/images/f1.jpeg" alt="Kenangan 1" class="h-44 sm:h-48 rounded-xl">
+                </div>
+
+                <!-- Foto 2 -->
+                <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/f1 (2).jpeg')" style="animation-delay: 0.3s">
+                    <img src="assets/images/f1 (2).jpeg" alt="Kenangan 2" class="h-44 sm:h-48 rounded-xl">
+                </div>
+
+                <!-- Foto 3 -->
+                <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/f1 (3).jpeg')" style="animation-delay: 0.4s">
+                    <img src="assets/images/f1 (3).jpeg" alt="Kenangan 3" class="h-44 sm:h-48 rounded-xl">
+                </div>
+
+                <!-- Foto 4 -->
+                <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/foto3.jpg.jpeg')" style="animation-delay: 0.5s">
+                    <img src="assets/images/foto3.jpg.jpeg" alt="Kenangan 4" class="h-44 sm:h-48 rounded-xl">
+                </div>
+
+                <!-- Foto 5 -->
+                <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/bakso.jpg')" style="animation-delay: 0.6s">
+                    <img src="assets/images/bakso.jpg" alt="Kenangan 5" class="h-44 sm:h-48 rounded-xl">
+                </div>
+
+                <!-- Foto 6 -->
+                <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/foto4.jpg')" style="animation-delay: 0.7s">
+                    <img src="assets/images/foto4.jpg" alt="Kenangan 6" class="h-44 sm:h-48 rounded-xl">
+                </div>
+
+                <!-- === VIDEO === -->
+                <!-- Video 1 -->
+                <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('video', 'assets/images/VID-20260630-WA0347.mp4')" style="animation-delay: 0.8s">
+                    <div class="play-icon"><i class="fa fa-play"></i></div>
+                    <video src="assets/images/VID-20260630-WA0347.mp4" class="h-44 sm:h-48 rounded-xl" muted preload="metadata">
+                        Browser tidak mendukung video
+                    </video>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('video', 'assets/images/Video dari Muhammad Zulfi.mp4')" style="animation-delay: 0.9s">
+                    <div class="play-icon"><i class="fa fa-play"></i></div>
+                    <video src="assets/images/Video dari Muhammad Zulfi.mp4" class="h-44 sm:h-48 rounded-xl" muted preload="metadata">
+                        Browser tidak mendukung video
+                    </video>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Layar Penuh -->
+    <div id="modalLayar" class="modal" onclick="tutupModal()">
+        <span class="tutup">&times;</span>
+        <img id="gambarPenuh" class="modal-konten" alt="Tampilan Penuh" style="display: none;">
+        <video id="videoPenuh" class="modal-konten" controls autoplay alt="Tampilan Video" style="display: none;"></video>
+    </div>
+
+    <!-- Script -->
+    <script>
+        const modal = document.getElementById('modalLayar');
+        const imgPenuh = document.getElementById('gambarPenuh');
+        const vidPenuh = document.getElementById('videoPenuh');
+
+        // Fungsi buka media (foto atau video)
+        function bukaMedia(jenis, sumber) {
+            // Reset tampilan sebelumnya
+            imgPenuh.style.display = 'none';
+            vidPenuh.style.display = 'none';
+            vidPenuh.pause();
+
+            if (jenis === 'foto') {
+                imgPenuh.src = sumber;
+                imgPenuh.style.display = 'block';
+            } else if (jenis === 'video') {
+                vidPenuh.src = sumber;
+                vidPenuh.style.display = 'block';
+            }
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Tutup modal
+        function tutupModal() {
+            modal.style.display = 'none';
+            vidPenuh.pause();
+            document.body.style.overflow = 'auto';
+        }
+
+        // Tutup modal dengan tombol ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') tutupModal();
+        });
+    </script>
+
+    <!-- Kaki Halaman -->
+    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70">
+        Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri
+    </footer>
+
+</body>
+</html>

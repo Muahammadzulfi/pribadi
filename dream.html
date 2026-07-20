@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dreams | Harapan & Impian Bersama</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cinta: {
+                            lembut: '#FFF5F8',
+                            merahMuda: '#FFD6E0',
+                            merahSedang: '#FF8FA3',
+                            merahTua: '#E63963',
+                            unguMuda: '#F0E6FF',
+                            teks: '#4A235A'
+                        }
+                    },
+                    fontFamily: {
+                        romantis: ['"Great Vibes"', 'cursive', 'serif'],
+                        utama: ['"Inter"', 'sans-serif']
+                    },
+                    screens: {
+                        'xs': '360px',
+                        'sm': '480px',
+                        'md': '768px',
+                        'lg': '1024px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .font-romantis {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Animasi Hati Berdetak */
+        .hati {
+            display: inline-block;
+            width: 24px;
+            height: 20px;
+            position: relative;
+            margin: 0 6px;
+        }
+        .hati::before,
+        .hati::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 12px;
+            height: 18px;
+            background: #E63963;
+            border-radius: 50px 50px 0 0;
+        }
+        .hati::before {
+            left: 12px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .hati::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        .animasi-detak {
+            animation: detak 1.6s ease-in-out infinite;
+        }
+        @keyframes detak {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Animasi Muncul */
+        .muncul {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gaya Kartu Impian */
+        .mimpi-kartu {
+            background: #ffffff;
+            border: 1px solid #FFD6E0;
+            box-shadow: 0 6px 18px rgba(230, 57, 99, 0.12);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .mimpi-kartu:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(230, 57, 99, 0.2);
+            border-color: #FF8FA3;
+        }
+
+        /* Garis Hias */
+        .garis-bintang {
+            background: linear-gradient(90deg, transparent, #FF8FA3, transparent);
+            height: 2px;
+            margin: 1rem 0;
+            border-radius: 2px;
+        }
+
+        /* Responsif Navigasi */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.4rem;
+            }
+            .nav-menu a {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-cinta-teks">
+
+    <!-- Navigasi Lengkap -->
+    <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2">
+                    <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
+                    <span class="font-semibold text-base sm:text-lg">Beranda</span>
+                </a>
+
+                <!-- Menu Navigasi Lengkap -->
+                <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
+                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-book"></i> Cerita Kita
+                    </a>
+                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-camera"></i> Galeri
+                    </a>
+                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-envelope"></i> Surat Cinta
+                    </a>
+                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-merahTua font-medium underline bg-cinta-merahMuda/40 text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg">
+                        <i class="fa fa-star"></i> Impian
+                    </a>
+                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-lock"></i> Pesan Rahasia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Judul Halaman -->
+    <section class="pt-32 pb-10 text-center muncul">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <i class="fa fa-star text-cinta-merahTua text-3xl sm:text-4xl"></i>
+                <h1 class="font-romantis text-[clamp(2.2rem,7vw,3.5rem)] text-cinta-merahTua">Dreams</h1>
+                <i class="fa fa-star text-cinta-merahTua text-3xl sm:text-4xl"></i>
+            </div>
+            <p class="text-base sm:text-lg text-cinta-teks/80 max-w-xl mx-auto">
+                Harapan, cita-cita, dan impian indah yang ingin kita wujudkan bersama ❤️
+            </p>
+        </div>
+    </section>
+
+    <!-- Isi Harapan & Impian -->
+    <section class="pb-20">
+        <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
+                <!-- Impian 1 -->
+                <div class="mimpi-kartu muncul" style="animation-delay: 0.2s">
+                    <div class="text-center mb-3">
+                        <i class="fa fa-heart text-cinta-merahSedang text-3xl"></i>
+                    </div>
+                    <h3 class="font-romantis text-xl sm:text-2xl text-cinta-merahTua text-center mb-2">Selalu Bersama</h3>
+                    <div class="garis-bintang"></div>
+                    <p class="text-sm sm:text-base text-center leading-relaxed">
+                        Impian terbesar kami adalah bisa terus melangkah berdampingan, melewati setiap hari, suka maupun duka, saling menjaga, dan saling mencintai sampai akhir hayat.
+                    </p>
+                </div>
+
+                <!-- Impian 2 -->
+                <div class="mimpi-kartu muncul" style="animation-delay: 0.35s">
+                    <div class="text-center mb-3">
+                        <i class="fa fa-home text-cinta-merahSedang text-3xl"></i>
+                    </div>
+                    <h3 class="font-romantis text-xl sm:text-2xl text-cinta-merahTua text-center mb-2">Rumah Tangga Bahagia</h3>
+                    <div class="garis-bintang"></div>
+                    <p class="text-sm sm:text-base text-center leading-relaxed">
+                        Semoga suatu hari nanti kami bisa membangun rumah tangga yang sakinah, mawaddah, dan warahmah, penuh keberkahan, kebahagiaan, dan ridha dari Allah SWT.
+                    </p>
+                </div>
+
+                <!-- Impian 3 -->
+                <div class="mimpi-kartu muncul" style="animation-delay: 0.5s">
+                    <div class="text-center mb-3">
+                        <i class="fa fa-road text-cinta-merahSedang text-3xl"></i>
+                    </div>
+                    <h3 class="font-romantis text-xl sm:text-2xl text-cinta-merahTua text-center mb-2">Melangkah ke Masa Depan</h3>
+                    <div class="garis-bintang"></div>
+                    <p class="text-sm sm:text-base text-center leading-relaxed">
+                        Semoga kami bisa saling mendukung untuk meraih cita-cita masing-masing, meraih kesuksesan, dan menjadikan setiap pencapaian sebagai kebanggaan bersama.
+                    </p>
+                </div>
+
+                <!-- Impian 4 -->
+                <div class="mimpi-kartu muncul" style="animation-delay: 0.65s">
+                    <div class="text-center mb-3">
+                        <i class="fa fa-map-marker text-cinta-merahSedang text-3xl"></i>
+                    </div>
+                    <h3 class="font-romantis text-xl sm:text-2xl text-cinta-merahTua text-center mb-2">Berpetualang Bersama</h3>
+                    <div class="garis-bintang"></div>
+                    <p class="text-sm sm:text-base text-center leading-relaxed">
+                        Ingin mengunjungi banyak tempat indah, melihat dunia bersama, dan mengukir lebih banyak kenangan manis yang akan selalu kami ingat selamanya.
+                    </p>
+                </div>
+
+                <!-- Impian 5 -->
+                <div class="mimpi-kartu muncul" style="animation-delay: 0.8s">
+                    <div class="text-center mb-3">
+                        <i class="fa fa-book text-cinta-merahSedang text-3xl"></i>
+                    </div>
+                    <h3 class="font-romantis text-xl sm:text-2xl text-cinta-merahTua text-center mb-2">Terus Belajar & Memperbaiki Diri</h3>
+                    <div class="garis-bintang"></div>
+                    <p class="text-sm sm:text-base text-center leading-relaxed">
+                        Semoga kami bisa saling mengingatkan dalam kebaikan, saling melengkapi kekurangan, dan tumbuh menjadi pribadi yang lebih baik setiap harinya.
+                    </p>
+                </div>
+
+                <!-- Impian 6 -->
+                <div class="mimpi-kartu muncul" style="animation-delay: 0.95s">
+                    <div class="text-center mb-3">
+                        <i class="fa fa-pray text-cinta-merahSedang text-3xl"></i>
+                    </div>
+                    <h3 class="font-romantis text-xl sm:text-2xl text-cinta-merahTua text-center mb-2">Diberkahi di Dunia & Akhirat</h3>
+                    <div class="garis-bintang"></div>
+                    <p class="text-sm sm:text-base text-center leading-relaxed">
+                        Harapan kami, semoga setiap langkah kami selalu dalam lindungan dan ridha Allah SWT, diberkahi rezeki, kesehatan, dan kebahagiaan hingga ke surga-Nya kelak.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Pesan Penutup -->
+            <div class="mt-12 sm:mt-16 bg-white/70 backdrop-blur-sm p-5 sm:p-6 rounded-2xl border border-cinta-merahMuda/50 text-center muncul" style="animation-delay: 1.2s">
+                <p class="text-base sm:text-lg italic">
+                    “Mimpi akan menjadi kenyataan jika kita saling percaya, berusaha, dan berdoa bersama. Kita akan mewujudkan semuanya, selangkah demi selangkah ❤️”
+                </p>
+                <p class="mt-3 font-romantis text-xl text-cinta-merahTua">
+                    Muhammad Zulfi & Alifah Azzahra Kusuma Putri
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigasi Bawah -->
+    <section class="text-center pb-16">
+        <a href="kontak.html" class="inline-block bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-8 py-3 rounded-full text-base sm:text-lg font-medium shadow-lg hover:shadow-xl transition-shadow">
+            📩 Ke Pesan Rahasia
+        </a>
+    </section>
+
+    <!-- Kaki Halaman -->
+    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70">
+        Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri © 2026
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Our Story | Cerita Kita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cinta: {
+                            lembut: '#FFF5F8',
+                            merahMuda: '#FFD6E0',
+                            merahSedang: '#FF8FA3',
+                            merahTua: '#E63963',
+                            unguMuda: '#F0E6FF',
+                            teks: '#4A235A'
+                        }
+                    },
+                    fontFamily: {
+                        romantis: ['"Great Vibes"', 'cursive', 'serif'],
+                        utama: ['"Inter"', 'sans-serif']
+                    },
+                    screens: {
+                        'xs': '360px',
+                        'sm': '480px',
+                        'md': '768px',
+                        'lg': '1024px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        .font-romantis {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Animasi Hati Berdetak */
+        .hati {
+            display: inline-block;
+            width: 24px;
+            height: 20px;
+            position: relative;
+            margin: 0 6px;
+        }
+        .hati::before,
+        .hati::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 12px;
+            height: 18px;
+            background: #E63963;
+            border-radius: 50px 50px 0 0;
+        }
+        .hati::before {
+            left: 12px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .hati::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        .animasi-detak {
+            animation: detak 1.6s ease-in-out infinite;
+        }
+        @keyframes detak {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Animasi Muncul */
+        .muncul {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Garis Waktu */
+        .garis-waktu {
+            position: relative;
+        }
+        .garis-waktu::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(#FF8FA3, #E63963);
+            border-radius: 2px;
+        }
+        .item-waktu {
+            width: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        .item-waktu.kiri {
+            padding-right: 2rem;
+            text-align: right;
+            left: 0;
+        }
+        .item-waktu.kanan {
+            padding-left: 2rem;
+            text-align: left;
+            left: 50%;
+        }
+        .titik {
+            position: absolute;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #E63963;
+            border: 4px solid #FFD6E0;
+            z-index: 1;
+            box-shadow: 0 0 0 3px rgba(230, 57, 99, 0.2);
+        }
+        .item-waktu.kiri .titik {
+            right: -8px;
+        }
+        .item-waktu.kanan .titik {
+            left: -8px;
+        }
+
+        /* Gaya Foto */
+        .foto-cerita {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(230, 57, 99, 0.15);
+            border: 2px solid #FFD6E0;
+            transition: transform 0.3s ease;
+        }
+        .foto-cerita:hover {
+            transform: scale(1.02);
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            .garis-waktu::before {
+                left: 20px;
+            }
+            .item-waktu {
+                width: 100%;
+                padding-left: 3.5rem !important;
+                padding-right: 1rem !important;
+                text-align: left !important;
+                left: 0 !important;
+            }
+            .titik {
+                left: 12px !important;
+                right: auto !important;
+            }
+            .foto-cerita {
+                height: 150px;
+            }
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-cinta-teks">
+
+    <!-- Navigasi Lengkap -->
+    <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2">
+                    <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
+                    <span class="font-semibold text-base sm:text-lg">Beranda</span>
+                </a>
+
+                <!-- Menu Navigasi Lengkap -->
+                <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
+                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-merahTua font-medium underline text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg bg-cinta-merahMuda/40">
+                        <i class="fa fa-book"></i> Cerita Kita
+                    </a>
+                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-camera"></i> Galeri
+                    </a>
+                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-envelope"></i> Surat Cinta
+                    </a>
+                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-star"></i> Impian
+                    </a>
+                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-lock"></i> Pesan Rahasia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Bagian Judul -->
+    <section class="pt-32 pb-12 text-center muncul">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <div class="hati animasi-detak"></div>
+                <h1 class="font-romantis text-[clamp(2.2rem,7vw,3.5rem)] text-cinta-merahTua">Our Story</h1>
+                <div class="hati animasi-detak"></div>
+            </div>
+            <p class="text-base sm:text-lg text-cinta-teks/80 max-w-xl mx-auto">
+                Cerita awal bertemu hingga menjadi bagian tak terpisahkan satu sama lain ❤️
+            </p>
+        </div>
+    </section>
+
+    <!-- Bagian Garis Waktu Cerita -->
+    <section class="pb-20">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+            <div class="garis-waktu">
+
+                <!-- Bagian 1: Awal Bertemu -->
+                <div class="item-waktu kiri muncul" style="animation-delay: 0.2s">
+                    <div class="titik"></div>
+                    <div class="bg-white/70 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-md border border-cinta-merahMuda/50">
+                        <!-- Foto di atas cerita -->
+                        <img src="assets/images/foto.jpeg" alt="Awal Bertemu" class="foto-cerita">
+                        <h3 class="font-romantis text-2xl text-cinta-merahTua mb-2">Awal Bertemu</h3>
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            Semua dimulai dari pertemuan yang tak terduga yaitu dm ig dan berlanjut dengan saling kenal serta dianya perhatian sekali ke saya sampe sampe saya jatuh hati ke dia nya, awal awal berbagi cerita sederhana, dan tak menyangka bahwa seseorang yang hadir di waktu itu akan menjadi bagian terindah dalam perjalanan hidup aku ke depannya.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bagian 2: Mulai Dekat -->
+                <div class="item-waktu kanan muncul" style="animation-delay: 0.4s">
+                    <div class="titik"></div>
+                    <div class="bg-white/70 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-md border border-cinta-merahMuda/50">
+                        <!-- Foto di atas cerita -->
+                        <img src="assets/images/foto1.jpeg" alt="Semakin Dekat" class="foto-cerita">
+                        <h3 class="font-romantis text-2xl text-cinta-merahTua mb-2">Semakin Dekat</h3>
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            Seiring berjalannya waktu, komunikasi semakin sering. Ada rasa nyaman yang tumbuh perlahan, saling mendengarkan, saling mengerti, dan mulai menyadari bahwa kehadiran satu sama lain membawa kebahagiaan tersendiri.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bagian 3: Menjalani Bersama -->
+                <div class="item-waktu kiri muncul" style="animation-delay: 0.6s">
+                    <div class="titik"></div>
+                    <div class="bg-white/70 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-md border border-cinta-merahMuda/50">
+                        <!-- Foto di atas cerita -->
+                        <img src="assets/images/foto3.jpg.jpeg" alt="Menjalani Hari Bersama" class="foto-cerita">
+                        <h3 class="font-romantis text-2xl text-cinta-merahTua mb-2">Menjalani Hari Bersama</h3>
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            Mulai melangkah bersama, berbagi suka dan duka. Setiap hari yang dilalui menjadi lebih berwarna. Belajar memahami kekurangan dan kelebihan satu sama lain, serta saling mendukung untuk menjadi pribadi yang lebih baik.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bagian 4: Hingga Saat Ini -->
+                <div class="item-waktu kanan muncul" style="animation-delay: 0.8s">
+                    <div class="titik"></div>
+                    <div class="bg-white/70 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-md border border-cinta-merahMuda/50">
+                        <!-- Foto di atas cerita -->
+                        <img src="assets/images/foto4.jpg" alt="Hingga Saat Ini" class="foto-cerita">
+                        <h3 class="font-romantis text-2xl text-cinta-merahTua mb-2">Hingga Saat Ini</h3>
+                        <p class="text-sm sm:text-base leading-relaxed">
+                            Kini, Muhammad Zulfi & Alifah Azzahra Kusuma Putri terus melangkah bersama. Semua cerita, tawa, dan kenangan yang terukir menjadi bukti perjalanan yang indah. Semoga kisah ini terus berlanjut, tumbuh, dan abadi selamanya.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Tombol Navigasi -->
+    <section class="text-center pb-16">
+        <a href="galeri.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-8 py-3 rounded-full text-base sm:text-lg font-medium shadow-lg hover:shadow-xl transition-shadow">
+            <i class="fa fa-camera"></i> Lihat Semua Kenangan
+        </a>
+    </section>
+
+    <!-- Kaki Halaman -->
+    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70">
+        Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri © 2026
+    </footer>
+
+</body>
+</html>

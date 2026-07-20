@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Beranda | Kisah Kita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cinta: {
+                            lembut: '#FFF5F8',
+                            merahMuda: '#FFD6E0',
+                            merahSedang: '#FF8FA3',
+                            merahTua: '#E63963',
+                            unguMuda: '#F0E6FF',
+                            teks: '#4A235A'
+                        }
+                    },
+                    fontFamily: {
+                        romantis: ['"Great Vibes"', 'cursive', 'serif'],
+                        utama: ['"Inter"', 'sans-serif']
+                    },
+                    screens: {
+                        'xs': '360px',
+                        'sm': '480px',
+                        'md': '768px',
+                        'lg': '1024px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        .font-romantis {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Animasi Hati Berdetak */
+        .hati {
+            display: inline-block;
+            width: 26px;
+            height: 22px;
+            position: relative;
+            margin: 0 8px;
+        }
+        .hati::before,
+        .hati::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 13px;
+            height: 20px;
+            background: #E63963;
+            border-radius: 50px 50px 0 0;
+        }
+        .hati::before {
+            left: 13px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .hati::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        .animasi-detak {
+            animation: detak 1.6s ease-in-out infinite;
+        }
+        @keyframes detak {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Animasi Muncul */
+        .muncul {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeUp 1s ease-out forwards;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tombol & Menu */
+        .tombol {
+            transition: all 0.3s ease;
+        }
+        .tombol:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 57, 99, 0.25);
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 480px) {
+            .nama-pasangan {
+                font-size: 1.1rem;
+            }
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.4rem;
+            }
+            .nav-menu a {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-cinta-teks">
+
+    <!-- Navigasi Lengkap dengan Ikon -->
+    <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2">
+                    <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
+                    <span class="font-semibold text-base sm:text-lg">Beranda</span>
+                </a>
+
+                <!-- Menu Navigasi dengan Ikon yang Jelas -->
+                <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
+                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-book"></i> Cerita Kita
+                    </a>
+                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-camera"></i> Galeri
+                    </a>
+                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-envelope"></i> Surat Cinta
+                    </a>
+                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-star"></i> Impian
+                    </a>
+                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-lock"></i> Pesan Rahasia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Konten Utama -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 pt-36 pb-16">
+        <div class="muncul w-full max-w-3xl mx-auto" style="animation-delay: 0.2s">
+            <div class="flex justify-center items-center mb-5 sm:mb-6">
+                <div class="hati animasi-detak"></div>
+                <h1 class="font-romantis text-[clamp(2.4rem,8vw,4.2rem)] text-cinta-merahTua">Our Love</h1>
+                <div class="hati animasi-detak"></div>
+            </div>
+
+            <h2 class="font-romantis text-[clamp(1.8rem,7vw,3rem)] text-cinta-merahSedang mb-5 sm:mb-6">Forever Us</h2>
+
+            <!-- Nama & Tanggal Lahir -->
+            <div class="bg-white/55 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-sm border border-cinta-merahMuda/50 mb-7 sm:mb-9">
+                <p class="nama-pasangan font-medium text-base sm:text-lg md:text-xl text-cinta-teks leading-relaxed">
+                    <i class="fa fa-user text-cinta-merahSedang mr-2"></i>Muhammad Zulfi <br>
+                    <span class="text-cinta-merahSedang font-normal text-sm sm:text-base">(28 April 2006)</span>
+                    <br><br>
+                    <i class="fa fa-heart text-cinta-merahTua mx-1"></i>
+                    <br><br>
+                    <i class="fa fa-user text-cinta-merahSedang mr-2"></i>Alifah Azzahra Kusuma Putri <br>
+                    <span class="text-cinta-merahSedang font-normal text-sm sm:text-base">(29 Desember 2008)</span>
+                </p>
+            </div>
+
+            <p class="text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-cinta-teks/85 mb-9 sm:mb-11">
+                Selamat datang di halaman kecil ini — tempat di mana semua cerita, tawa, dan kenangan indah kita terukir selamanya.
+                <br><br>
+                <span class="font-medium text-cinta-merahTua">❤️ Love Story • Kisah Kita • Cerita Cinta ❤️</span>
+            </p>
+
+            <div class="bg-white/65 backdrop-blur-sm p-6 sm:p-7 md:p-9 rounded-3xl shadow-md border border-cinta-merahMuda/55 max-w-xl mx-auto mb-9 sm:mb-11">
+                <h3 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua mb-4 sm:mb-5">Selamanya Kita</h3>
+                <p class="text-sm sm:text-base md:text-lg leading-relaxed">
+                    Untuk <strong class="text-cinta-merahTua">My Beloved</strong> — terima kasih telah menjadi bagian dari setiap lembar hidupku.
+                    Setiap detik yang kita lalui adalah <em class="text-cinta-merahSedang">Sweet Memories</em>, dan rasa ini akan selalu menjadi <strong class="text-cinta-merahTua">Endless Love</strong>.
+                </p>
+            </div>
+
+            <a href="ourstory.html" class="tombol flex items-center justify-center gap-2 bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-7 sm:px-9 py-3 sm:py-3.5 rounded-full text-base sm:text-lg font-medium shadow-lg w-full sm:w-auto">
+                <i class="fa fa-book"></i> Mulai Jelajahi Cerita Kita
+            </a>
+        </div>
+    </section>
+
+    <!-- Kaki Halaman -->
+    <footer class="text-center pb-7 text-xs sm:text-sm text-cinta-teks/75">
+        Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri © 2026
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact / Secret | Pesan Rahasia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cinta: {
+                            lembut: '#FFF5F8',
+                            merahMuda: '#FFD6E0',
+                            merahSedang: '#FF8FA3',
+                            merahTua: '#E63963',
+                            unguMuda: '#F0E6FF',
+                            teks: '#4A235A'
+                        }
+                    },
+                    fontFamily: {
+                        romantis: ['"Great Vibes"', 'cursive', 'serif'],
+                        utama: ['"Inter"', 'sans-serif']
+                    },
+                    screens: {
+                        'xs': '360px',
+                        'sm': '480px',
+                        'md': '768px',
+                        'lg': '1024px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .font-romantis {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Animasi Hati Berdetak */
+        .hati {
+            display: inline-block;
+            width: 24px;
+            height: 20px;
+            position: relative;
+            margin: 0 6px;
+        }
+        .hati::before,
+        .hati::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 12px;
+            height: 18px;
+            background: #E63963;
+            border-radius: 50px 50px 0 0;
+        }
+        .hati::before {
+            left: 12px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .hati::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        .animasi-detak {
+            animation: detak 1.6s ease-in-out infinite;
+        }
+        @keyframes detak {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Animasi Muncul */
+        .muncul {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gaya Formulir */
+        .form-kotak {
+            background: #ffffff;
+            border: 1px solid #FFD6E0;
+            box-shadow: 0 8px 24px rgba(230, 57, 99, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .form-kotak:hover {
+            box-shadow: 0 12px 30px rgba(230, 57, 99, 0.2);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid #FFD6E0;
+            border-radius: 12px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #fffdfd;
+        }
+        input:focus, textarea:focus {
+            border-color: #FF8FA3;
+            box-shadow: 0 0 0 3px rgba(255, 143, 163, 0.2);
+        }
+
+        .info-rahasia {
+            background: rgba(255, 214, 224, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            border-left: 4px solid #E63963;
+        }
+
+        /* Responsif Navigasi */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.4rem;
+            }
+            .nav-menu a {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-cinta-teks">
+
+    <!-- Navigasi Lengkap -->
+    <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2">
+                    <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
+                    <span class="font-semibold text-base sm:text-lg">Beranda</span>
+                </a>
+
+                <!-- Menu Navigasi Lengkap -->
+                <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
+                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-book"></i> Cerita Kita
+                    </a>
+                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-camera"></i> Galeri
+                    </a>
+                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-envelope"></i> Surat Cinta
+                    </a>
+                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-star"></i> Impian
+                    </a>
+                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-merahTua font-medium underline bg-cinta-merahMuda/40 text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg">
+                        <i class="fa fa-lock"></i> Pesan Rahasia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Judul Halaman -->
+    <section class="pt-32 pb-10 text-center muncul">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <i class="fa fa-lock text-cinta-merahTua text-3xl sm:text-4xl"></i>
+                <h1 class="font-romantis text-[clamp(2.2rem,7vw,3.5rem)] text-cinta-merahTua">Contact / Secret</h1>
+                <i class="fa fa-heart text-cinta-merahTua text-3xl sm:text-4xl animasi-detak"></i>
+            </div>
+            <p class="text-base sm:text-lg text-cinta-teks/80 max-w-xl mx-auto">
+                Form pesan rahasia atau ucapan untuk dikirimkan langsung ❤️
+            </p>
+        </div>
+    </section>
+
+    <!-- Isi Halaman -->
+    <section class="pb-20">
+        <div class="container mx-auto px-4 sm:px-6 max-w-2xl">
+
+            <!-- Kotak Informasi -->
+            <div class="info-rahasia mb-6 muncul" style="animation-delay: 0.2s">
+                <p class="text-sm sm:text-base">
+                    ✍️ Tuliskan apa saja yang ingin kamu sampaikan — bisa berisi pesan rahasia, ucapan sayang, doa, atau hal-hal yang ingin disampaikan secara khusus. Pilih salah satu tombol untuk mengirimnya.
+                </p>
+            </div>
+
+            <!-- Formulir Pesan -->
+            <div class="form-kotak muncul" style="animation-delay: 0.4s">
+                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-6">Tulis Pesanmu</h2>
+
+                <div class="mb-5">
+                    <label for="nama" class="block text-sm font-medium mb-2">Dari</label>
+                    <input type="text" id="nama" placeholder="Contoh: Muhammad Zulfi" value="Muhammad Zulfi" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="pesan" class="block text-sm font-medium mb-2">Isi Pesan / Ucapan</label>
+                    <textarea id="pesan" rows="6" placeholder="Tuliskan pesan rahasia, ucapan, atau kata-kata indah di sini..." required></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button type="button" onclick="kirimKeAlifah()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2">
+                        <i class="fa fa-whatsapp"></i> Kirim ke Alifah
+                    </button>
+                    <button type="button" onclick="kirimKeZulfi()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2">
+                        <i class="fa fa-whatsapp"></i> Kirim ke Zulfi
+                    </button>
+                </div>
+
+                <p class="text-center text-xs text-cinta-teks/60 mt-4 italic">
+                    *Pesan akan dikirim langsung melalui WhatsApp ke nomor tujuan
+                </p>
+            </div>
+
+            <!-- Pesan Penutup -->
+            <div class="mt-10 text-center muncul" style="animation-delay: 0.6s">
+                <p class="text-base sm:text-lg italic">
+                    “Kata-kata yang tulus dari hati, akan selalu sampai ke hati yang mencintai ❤️”
+                </p>
+                <p class="mt-3 font-romantis text-xl text-cinta-merahTua">
+                    Muhammad Zulfi & Alifah Azzahra Kusuma Putri
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Navigasi Bawah -->
+    <section class="text-center pb-16">
+        <a href="index.html" class="inline-block bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-8 py-3 rounded-full text-base sm:text-lg font-medium shadow-lg hover:shadow-xl transition-shadow">
+            🏠 Kembali ke Beranda
+        </a>
+    </section>
+
+    <!-- Script Kirim WhatsApp -->
+    <script>
+        function kirimKeAlifah() {
+            const nama = document.getElementById('nama').value;
+            const pesan = document.getElementById('pesan').value;
+            const nomor = "6281391013326";
+            const teks = `Halo Alifah Sayang ❤️\n\nAda pesan untukmu:\n\n📝 Dari: ${nama}\n💬 Isi: ${pesan}\n\nDikirim dari halaman Pesan Rahasia Kita 📌`;
+            const url = `https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`;
+            window.open(url, '_blank');
+        }
+
+        function kirimKeZulfi() {
+            const nama = document.getElementById('nama').value;
+            const pesan = document.getElementById('pesan').value;
+            const nomor = "6285762252190";
+            const teks = `Halo Zulfi Sayang ❤️\n\nAda pesan untukmu:\n\n📝 Dari: ${nama}\n💬 Isi: ${pesan}\n\nDikirim dari halaman Pesan Rahasia Kita 📌`;
+            const url = `https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+
+    <!-- Kaki Halaman -->
+    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70">
+        Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri © 2026
+    </footer>
+
+</body>
+</html>

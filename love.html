@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Love Letters | Surat Cinta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cinta: {
+                            lembut: '#FFF5F8',
+                            merahMuda: '#FFD6E0',
+                            merahSedang: '#FF8FA3',
+                            merahTua: '#E63963',
+                            unguMuda: '#F0E6FF',
+                            teks: '#4A235A'
+                        }
+                    },
+                    fontFamily: {
+                        romantis: ['"Great Vibes"', 'cursive', 'serif'],
+                        utama: ['"Inter"', 'sans-serif']
+                    },
+                    screens: {
+                        'xs': '360px',
+                        'sm': '480px',
+                        'md': '768px',
+                        'lg': '1024px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .font-romantis {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Animasi Hati Berdetak */
+        .hati {
+            display: inline-block;
+            width: 24px;
+            height: 20px;
+            position: relative;
+            margin: 0 6px;
+        }
+        .hati::before,
+        .hati::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 12px;
+            height: 18px;
+            background: #E63963;
+            border-radius: 50px 50px 0 0;
+        }
+        .hati::before {
+            left: 12px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .hati::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        .animasi-detak {
+            animation: detak 1.6s ease-in-out infinite;
+        }
+        @keyframes detak {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Animasi Muncul */
+        .muncul {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gaya Amplop & Surat */
+        .surat {
+            background: #fffdfb;
+            border: 1px solid #FFD6E0;
+            box-shadow: 0 8px 24px rgba(230, 57, 99, 0.15);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .surat:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(230, 57, 99, 0.2);
+        }
+        .garis-hias {
+            background: linear-gradient(90deg, transparent, #FFD6E0, transparent);
+            height: 2px;
+            margin: 1rem 0;
+        }
+
+        /* Responsif Navigasi */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.4rem;
+            }
+            .nav-menu a {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-cinta-teks">
+
+    <!-- Navigasi Lengkap Sama Seperti Beranda -->
+    <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2">
+                    <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
+                    <span class="font-semibold text-base sm:text-lg">Beranda</span>
+                </a>
+
+                <!-- Menu Navigasi Lengkap -->
+                <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
+                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-book"></i> Cerita Kita
+                    </a>
+                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-camera"></i> Galeri
+                    </a>
+                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-merahTua font-medium underline bg-cinta-merahMuda/40 text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg">
+                        <i class="fa fa-envelope"></i> Surat Cinta
+                    </a>
+                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-star"></i> Impian
+                    </a>
+                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                        <i class="fa fa-lock"></i> Pesan Rahasia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Judul Halaman -->
+    <section class="pt-32 pb-10 text-center muncul">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <i class="fa fa-envelope text-cinta-merahTua text-3xl sm:text-4xl"></i>
+                <h1 class="font-romantis text-[clamp(2.2rem,7vw,3.5rem)] text-cinta-merahTua">Love Letters</h1>
+                <i class="fa fa-heart text-cinta-merahTua text-3xl sm:text-4xl animasi-detak"></i>
+            </div>
+            <p class="text-base sm:text-lg text-cinta-teks/80 max-w-xl mx-auto">
+                Kata-kata, pesan, dan doa yang tulus untukmu ❤️
+            </p>
+        </div>
+    </section>
+
+    <!-- Isi Surat / Pesan -->
+    <section class="pb-20">
+        <div class="container mx-auto px-4 sm:px-6 max-w-3xl">
+
+            <!-- Surat 1 -->
+            <div class="surat p-6 sm:p-8 mb-8 muncul" style="animation-delay: 0.2s">
+                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-3">Untuk My Beloved</h2>
+                <div class="garis-hias"></div>
+                <div class="text-justify text-sm sm:text-base leading-relaxed">
+                    <p>
+                        Halo sayangku Alifah Azzahra Kusuma Putri ❤️
+                    </p>
+                    <p class="mt-3">
+                        Menulis surat ini membuatku sadar betapa beruntungnya aku dipertemukan dengan seseorang sebaik dirimu. Sejak kamu hadir dalam hidupku, hari-hariku terasa lebih berwarna, lebih bermakna, dan penuh kebahagiaan.
+                    </p>
+                    <p class="mt-3">
+                        Terima kasih telah menjadi pendengar yang baik, tempat berbagi cerita, dan sosok yang selalu mengerti. Terima kasih atas kesabaran, perhatian, dan rasa sayang yang kamu berikan selama ini. Setiap detik yang kita lalui bersama adalah kenangan indah yang tak akan pernah aku lupakan.
+                    </p>
+                    <p class="mt-3">
+                        Aku berjanji akan selalu berusaha menjadi yang terbaik untukmu, mendukung setiap impianmu, dan menjaga rasa ini selamanya. Semoga kita bisa terus melangkah berdampingan, melewati suka dan duka, hingga nanti.
+                    </p>
+                    <p class="mt-6 text-right italic">
+                        Dengan segenap cinta,<br>
+                        <span class="font-romantis text-xl text-cinta-merahTua">Muhammad Zulfi</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Surat 2 -->
+            <div class="surat p-6 sm:p-8 mb-8 muncul" style="animation-delay: 0.4s">
+                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-3">Pesan dari Hati</h2>
+                <div class="garis-hias"></div>
+                <div class="text-justify text-sm sm:text-base leading-relaxed">
+                    <p>
+                        Untukmu yang tercinta,
+                    </p>
+                    <p class="mt-3">
+                        Mungkin aku tidak selalu pandai merangkai kata-kata indah, tapi izinkan aku menyampaikan apa yang ada di hatiku. Kamu adalah anugerah terindah yang Tuhan berikan kepadaku. Kehadiranmu menjadi kekuatan dan alasan aku tersenyum setiap harinya.
+                    </p>
+                    <p class="mt-3">
+                        Semoga rasa cinta ini tidak pernah pudar, semakin hari semakin kuat dan semakin dalam. Semoga kita selalu diberi kemudahan, keikhlasan, dan keberkahan dalam setiap langkah yang kita pilih bersama.
+                    </p>
+                    <p class="mt-3">
+                        Ingatlah, di mana pun dan kapan pun, ada aku yang akan selalu menyayangimu, mendukungmu, dan menjagamu. Kamu tidak sendirian, karena kita sekarang sudah menjadi satu.
+                    </p>
+                    <p class="mt-6 text-right italic">
+                        Selamanya milikmu,<br>
+                        <span class="font-romantis text-xl text-cinta-merahTua">Muhammad Zulfi</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Surat 3 -->
+            <div class="surat p-6 sm:p-8 muncul" style="animation-delay: 0.6s">
+                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-3">Doa untuk Kita</h2>
+                <div class="garis-hias"></div>
+                <div class="text-justify text-sm sm:text-base leading-relaxed">
+                    <p>
+                        Ya Allah,
+                    </p>
+                    <p class="mt-3">
+                        Terima kasih atas pertemuan yang Engkau takdirkan antara aku dan Alifah. Jadikanlah hubungan ini selalu dalam ridha-Mu, penuh kebahagiaan, kedamaian, dan keberkahan.
+                    </p>
+                    <p class="mt-3">
+                        Lindungilah dia selalu, jaga hatinya, sehatkan tubuhnya, dan mudahkanlah segala urusannya. Jadikanlah kami saling melengkapi, saling mengingatkan dalam kebaikan, dan saling menguatkan satu sama lain.
+                    </p>
+                    <p class="mt-3">
+                        Semoga kisah cinta kita ini menjadi jalan menuju kebahagiaan dunia dan akhirat, serta menjadi kenangan indah yang abadi selamanya.
+                    </p>
+                    <p class="mt-6 text-right italic">
+                        ❤️ Forever Us ❤️
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Navigasi Bawah -->
+    <section class="text-center pb-16">
+        <a href="galeri.html" class="inline-block bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-8 py-3 rounded-full text-base sm:text-lg font-medium shadow-lg hover:shadow-xl transition-shadow">
+            📸 Lihat Kembali Kenangan
+        </a>
+    </section>
+
+    <!-- Kaki Halaman -->
+    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70">
+        Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri
+    </footer>
+
+</body>
+</html>
