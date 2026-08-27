@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Contact / Secret | Pesan Rahasia</title>
+    <title>4 Foto Kenangan Kita ❤️ Kolase 2×2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -23,12 +23,6 @@
                     fontFamily: {
                         romantis: ['"Great Vibes"', 'cursive', 'serif'],
                         utama: ['"Inter"', 'sans-serif']
-                    },
-                    screens: {
-                        'xs': '360px',
-                        'sm': '480px',
-                        'md': '768px',
-                        'lg': '1024px'
                     }
                 }
             }
@@ -36,254 +30,491 @@
     </script>
     <style type="text/tailwindcss">
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
             min-height: 100vh;
-            line-height: 1.8;
         }
-
         .font-romantis {
             font-family: 'Great Vibes', cursive;
         }
-
-        /* Animasi Hati Berdetak */
-        .hati {
-            display: inline-block;
-            width: 24px;
-            height: 20px;
-            position: relative;
-            margin: 0 6px;
-        }
-        .hati::before,
-        .hati::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 12px;
-            height: 18px;
-            background: #E63963;
-            border-radius: 50px 50px 0 0;
-        }
-        .hati::before {
-            left: 12px;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-        }
-        .hati::after {
-            left: 0;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
-        }
-        .animasi-detak {
-            animation: detak 1.6s ease-in-out infinite;
-        }
-        @keyframes detak {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* Animasi Muncul */
         .muncul {
             opacity: 0;
             transform: translateY(25px);
             animation: fadeUp 0.8s ease-out forwards;
         }
         @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Gaya Formulir */
+        /* 📸 FOTO BOX / POLAROID */
+        .foto-box {
+            background: #fff;
+            border: 12px solid #fff;
+            border-bottom: 45px solid #fff;
+            border-radius: 18px;
+            box-shadow:
+                0 10px 30px rgba(230, 57, 99, 0.2),
+                inset 0 0 0 2px #FFD6E0;
+            padding: 0;
+            position: relative;
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+        }
+        .foto-box:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+        .foto-box::after {
+            content: '💝 Kenangan Kita 💝';
+            position: absolute;
+            bottom: -38px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.1rem;
+            color: #E63963;
+            letter-spacing: 1px;
+        }
+
+        /* ❤️ KOLASE 2×2 — BERBARIS KE BAWAH */
+        .kolase-box {
+            background: #fff;
+            border: 18px solid #fff;
+            border-bottom: 55px solid #fff;
+            border-radius: 22px;
+            box-shadow:
+                0 15px 40px rgba(230, 57, 99, 0.25),
+                inset 0 0 0 3px #FFD6E0;
+            padding: 10px;
+            position: relative;
+        }
+        .kolase-box::after {
+            content: '❤️ 4 Kenangan Kita ❤️';
+            position: absolute;
+            bottom: -45px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.3rem;
+            color: #E63963;
+            letter-spacing: 1px;
+        }
+
+        video, canvas {
+            transform: scaleX(-1);
+            border-radius: 12px;
+        }
+        canvas.tanpa-cermin {
+            transform: none;
+        }
+        .tombol-jepret {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #FF8FA3, #E63963);
+            border: 5px solid #fff;
+            box-shadow: 0 6px 16px rgba(230, 57, 99, 0.35);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tombol-jepret:active {
+            transform: scale(0.9);
+        }
         .form-kotak {
-            background: #ffffff;
+            background: #fff;
             border: 1px solid #FFD6E0;
             box-shadow: 0 8px 24px rgba(230, 57, 99, 0.15);
             border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            padding: 1.5rem;
         }
-        .form-kotak:hover {
-            box-shadow: 0 12px 30px rgba(230, 57, 99, 0.2);
+        .langkah {
+            counter-increment: langkah;
         }
-
-        input, textarea {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            border: 1px solid #FFD6E0;
-            border-radius: 12px;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            background: #fffdfd;
-        }
-        input:focus, textarea:focus {
-            border-color: #FF8FA3;
-            box-shadow: 0 0 0 3px rgba(255, 143, 163, 0.2);
-        }
-
-        .info-rahasia {
-            background: rgba(255, 214, 224, 0.3);
-            border-radius: 12px;
-            padding: 1rem;
-            border-left: 4px solid #E63963;
-        }
-
-        /* Responsif Navigasi */
-        @media (max-width: 768px) {
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.4rem;
-            }
-            .nav-menu a {
-                font-size: 0.75rem;
-                padding: 0.3rem 0.6rem;
-            }
+        .langkah::before {
+            content: counter(langkah);
+            background: #E63963;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body class="text-cinta-teks">
 
-    <!-- Navigasi Lengkap -->
-    <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
-        <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
-                <a href="index.html" class="flex items-center gap-2">
-                    <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
-                    <span class="font-semibold text-base sm:text-lg">Beranda</span>
-                </a>
-
-                <!-- Menu Navigasi Lengkap -->
-                <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
-                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
-                        <i class="fa fa-book"></i> Cerita Kita
-                    </a>
-                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
-                        <i class="fa fa-camera"></i> Galeri
-                    </a>
-                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
-                        <i class="fa fa-envelope"></i> Surat Cinta
-                    </a>
-                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
-                        <i class="fa fa-star"></i> Impian
-                    </a>
-                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-merahTua font-medium underline bg-cinta-merahMuda/40 text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg">
-                        <i class="fa fa-lock"></i> Pesan Rahasia
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Judul Halaman -->
-    <section class="pt-32 pb-10 text-center muncul">
-        <div class="container mx-auto px-4 sm:px-6">
-            <div class="flex justify-center items-center gap-3 mb-4">
-                <i class="fa fa-lock text-cinta-merahTua text-3xl sm:text-4xl"></i>
-                <h1 class="font-romantis text-[clamp(2.2rem,7vw,3.5rem)] text-cinta-merahTua">Contact / Secret</h1>
-                <i class="fa fa-heart text-cinta-merahTua text-3xl sm:text-4xl animasi-detak"></i>
-            </div>
-            <p class="text-base sm:text-lg text-cinta-teks/80 max-w-xl mx-auto">
-                Form pesan rahasia atau ucapan untuk dikirimkan langsung ❤️
-            </p>
-        </div>
+    <section class="pt-10 pb-4 text-center muncul">
+        <h1 class="font-romantis text-3xl sm:text-4xl text-cinta-merahTua">❤️ 4 Foto Kenangan Kita</h1>
+        <p class="mt-2 text-cinta-teks/70 max-w-md mx-auto">Susunan 2×2 — berbaris ke bawah, cantik dan pas di HP 💝</p>
     </section>
 
-    <!-- Isi Halaman -->
-    <section class="pb-20">
-        <div class="container mx-auto px-4 sm:px-6 max-w-2xl">
+    <section class="pb-10 max-w-lg mx-auto px-4">
 
-            <!-- Kotak Informasi -->
-            <div class="info-rahasia mb-6 muncul" style="animation-delay: 0.2s">
-                <p class="text-sm sm:text-base">
-                    ✍️ Tuliskan apa saja yang ingin kamu sampaikan — bisa berisi pesan rahasia, ucapan sayang, doa, atau hal-hal yang ingin disampaikan secara khusus. Pilih salah satu tombol untuk mengirimnya.
-                </p>
+        <!-- 📋 Cara Pakai -->
+        <div class="bg-cinta-unguMuda/50 p-4 rounded-xl mb-6 muncul" style="animation-delay: 0.1s">
+            <h3 class="font-bold text-cinta-merahTua mb-2">📋 Cara Pakai:</h3>
+            <div class="space-y-2 text-sm" style="counter-reset: langkah;">
+                <p class="langkah">Ambil foto → simpan (lakukan untuk 4 foto)</p>
+                <p class="langkah">Unggah keempat foto di kolom bawah</p>
+                <p class="langkah">Otomatis tersusun 2×2 → simpan & kirim 💝</p>
             </div>
+        </div>
 
-            <!-- Formulir Pesan -->
-            <div class="form-kotak muncul" style="animation-delay: 0.4s">
-                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-6">Tulis Pesanmu</h2>
-
-                <div class="mb-5">
-                    <label for="nama" class="block text-sm font-medium mb-2">Dari</label>
-                    <input type="text" id="nama" placeholder="Contoh: Muhammad Zulfi" value="Muhammad Zulfi" required>
+        <!-- 📸 BAGIAN 1: AMBIL FOTO -->
+        <div class="form-kotak muncul mb-6" style="animation-delay: 0.2s">
+            <h2 class="font-romantis text-2xl text-cinta-merahTua text-center mb-4">📸 Ambil Foto</h2>
+            <div id="wadahKamera">
+                <div class="foto-box mb-4">
+                    <video id="kamera" autoplay playsinline muted class="w-full h-72 object-cover"></video>
                 </div>
-
-                <div class="mb-6">
-                    <label for="pesan" class="block text-sm font-medium mb-2">Isi Pesan / Ucapan</label>
-                    <textarea id="pesan" rows="6" placeholder="Tuliskan pesan rahasia, ucapan, atau kata-kata indah di sini..." required></textarea>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <button type="button" onclick="kirimKeAlifah()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2">
-                        <i class="fa fa-whatsapp"></i> Kirim ke Alifah
+                <div class="flex justify-center gap-3">
+                    <button onclick="bukaKamera()" class="px-3 py-2 bg-cinta-merahMuda rounded-full text-sm">
+                        <i class="fa fa-refresh"></i> Buka
                     </button>
-                    <button type="button" onclick="kirimKeZulfi()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2">
-                        <i class="fa fa-whatsapp"></i> Kirim ke Zulfi
+                    <button onclick="jepretFoto()" class="tombol-jepret flex items-center justify-center text-white">
+                        <i class="fa fa-camera text-xl"></i>
+                    </button>
+                    <button onclick="gantiKamera()" class="px-3 py-2 bg-cinta-merahMuda rounded-full text-sm">
+                        <i class="fa fa-exchange"></i> Ganti
                     </button>
                 </div>
-
-                <p class="text-center text-xs text-cinta-teks/60 mt-4 italic">
-                    *Pesan akan dikirim langsung melalui WhatsApp ke nomor tujuan
-                </p>
             </div>
 
-            <!-- Pesan Penutup -->
-            <div class="mt-10 text-center muncul" style="animation-delay: 0.6s">
-                <p class="text-base sm:text-lg italic">
-                    “Kata-kata yang tulus dari hati, akan selalu sampai ke hati yang mencintai ❤️”
-                </p>
-                <p class="mt-3 font-romantis text-xl text-cinta-merahTua">
-                    Muhammad Zulfi & Alifah Azzahra Kusuma Putri
-                </p>
+            <!-- Hasil Foto Sendiri -->
+            <div id="wadahFotoSendiri" class="hidden">
+                <h3 class="text-center font-medium text-cinta-merahTua mb-3">✅ Foto Siap!</h3>
+                <div class="foto-box mb-4">
+                    <canvas id="fotoSendiri" class="w-full"></canvas>
+                </div>
+                <div class="flex justify-center gap-3 mb-4">
+                    <button onclick="ambilUlang()" class="px-3 py-2 bg-gray-200 rounded-full text-sm">
+                        <i class="fa fa-rotate-left"></i> Foto Ulang
+                    </button>
+                    <button onclick="simpanFotoSendiri()" class="px-4 py-2 bg-cinta-merahSedang text-white rounded-full text-sm">
+                        <i class="fa fa-download"></i> Simpan Foto
+                    </button>
+                </div>
+                <div class="text-center p-3 bg-cinta-lembut rounded-lg text-sm">
+                    💡 Simpan foto sebanyak yang dibutuhkan, lalu unggah di bagian kolase di bawah! 👇
+                </div>
+            </div>
+        </div>
+
+        <!-- ❤️ BAGIAN 2: GABUNG JADI KOLASE 2×2 -->
+        <div class="form-kotak muncul" style="animation-delay: 0.4s">
+            <h2 class="font-romantis text-2xl text-cinta-merahTua text-center mb-4">❤️ Gabung Jadi Kolase 2×2</h2>
+            <p class="text-center text-sm mb-4 text-cinta-teks/70">Unggah 4 foto → tersusun rapi 2 baris ke bawah!</p>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-center">Foto 1 📸</label>
+                    <input type="file" id="foto1" accept="image/*" onchange="bacaFoto1(this)" class="w-full text-sm border p-2 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-center">Foto 2 📸</label>
+                    <input type="file" id="foto2" accept="image/*" onchange="bacaFoto2(this)" class="w-full text-sm border p-2 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-center">Foto 3 📸</label>
+                    <input type="file" id="foto3" accept="image/*" onchange="bacaFoto3(this)" class="w-full text-sm border p-2 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-center">Foto 4 📸</label>
+                    <input type="file" id="foto4" accept="image/*" onchange="bacaFoto4(this)" class="w-full text-sm border p-2 rounded-lg">
+                </div>
             </div>
 
+            <!-- Hasil Kolase -->
+            <div id="wadahKolase" class="hidden mt-6">
+                <h3 class="font-romantis text-xl text-cinta-merahTua text-center mb-4">✨ Kolase 2×2 Kenangan Kita!</h3>
+                <div class="kolase-box mb-4">
+                    <canvas id="hasilKolase" class="w-full"></canvas>
+                </div>
+                <div class="flex justify-center gap-3">
+                    <button onclick="simpanKolase()" class="px-5 py-2 bg-cinta-merahSedang text-white rounded-full font-medium">
+                        <i class="fa fa-download"></i> Simpan Kolase 💝
+                    </button>
+                </div>
+            </div>
+
+            <div id="infoBelumLengkap" class="text-center text-sm text-cinta-teks/60 mt-4">
+                ⬆️ Silakan unggah keempat foto terlebih dahulu ya!
+            </div>
+        </div>
+
+        <!-- 💌 Bagian Kirim Pesan -->
+        <div class="form-kotak muncul mt-6" style="animation-delay: 0.6s">
+            <h2 class="font-romantis text-2xl text-cinta-merahTua text-center mb-4">💌 Kirim Pesan & Foto</h2>
+            <div class="mb-3">
+                <label class="block text-sm font-medium mb-1">Dari</label>
+                <input type="text" id="nama" value="Muhammad Zulfi" class="w-full px-3 py-2 border border-cinta-merahMuda rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">Pesan untuk Pasangan</label>
+                <textarea id="pesan" rows="3" class="w-full px-3 py-2 border border-cinta-merahMuda rounded-lg" placeholder="Tulis pesan...">4 kenangan kita tersusun rapi, walau berjauhan hati tetap satu ❤️💕</textarea>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="kirimKeAlifah()" class="bg-green-500 text-white py-3 rounded-lg text-sm">
+                    <i class="fa fa-whatsapp"></i> Kirim ke Alifah 💌
+                </button>
+                <button onclick="kirimKeZulfi()" class="bg-green-500 text-white py-3 rounded-lg text-sm">
+                    <i class="fa fa-whatsapp"></i> Kirim ke Zulfi 💌
+                </button>
+            </div>
         </div>
     </section>
 
-    <!-- Navigasi Bawah -->
-    <section class="text-center pb-16">
-        <a href="index.html" class="inline-block bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-8 py-3 rounded-full text-base sm:text-lg font-medium shadow-lg hover:shadow-xl transition-shadow">
-            🏠 Kembali ke Beranda
-        </a>
-    </section>
-
-    <!-- Script Kirim WhatsApp -->
     <script>
+        const video = document.getElementById('kamera');
+        const canvasSendiri = document.getElementById('fotoSendiri');
+        const ctxSendiri = canvasSendiri.getContext('2d');
+        const canvasKolase = document.getElementById('hasilKolase');
+        const ctxKolase = canvasKolase.getContext('2d');
+
+        let streamKamera = null;
+        let modeKamera = 'user';
+        let fotoTerambil = null;
+        let foto1 = null;
+        let foto2 = null;
+        let foto3 = null;
+        let foto4 = null;
+
+        window.addEventListener('load', () => setTimeout(bukaKamera, 500));
+
+        async function bukaKamera() {
+            try {
+                if (streamKamera) streamKamera.getTracks().forEach(t => t.stop());
+                streamKamera = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: modeKamera, width: { ideal: 800 }, height: { ideal: 600 } },
+                    audio: false
+                });
+                video.srcObject = streamKamera;
+                document.getElementById('wadahKamera').classList.remove('hidden');
+                document.getElementById('wadahFotoSendiri').classList.add('hidden');
+            } catch {
+                alert('⚠️ Izinkan akses kamera ya! Buka lewat Live Server atau HTTPS.');
+            }
+        }
+
+        function gantiKamera() {
+            modeKamera = modeKamera === 'user' ? 'environment' : 'user';
+            bukaKamera();
+        }
+
+        function jepretFoto() {
+            if (!streamKamera) return alert('⚠️ Buka kamera dulu!');
+            const w = video.videoWidth || 640;
+            const h = video.videoHeight || 480;
+            canvasSendiri.width = w;
+            canvasSendiri.height = h;
+
+            ctxSendiri.translate(w, 0);
+            ctxSendiri.scale(-1, 1);
+            ctxSendiri.drawImage(video, 0, 0, w, h);
+            ctxSendiri.setTransform(1, 0, 0, 1, 0, 0);
+
+            tambahBingkai(canvasSendiri, ctxSendiri, w, h);
+            fotoTerambil = canvasSendiri.toDataURL('image/jpeg', 0.92);
+
+            document.getElementById('wadahKamera').classList.add('hidden');
+            document.getElementById('wadahFotoSendiri').classList.remove('hidden');
+        }
+
+        function tambahBingkai(kanvas, konteks, w, h) {
+            const jarak = Math.min(w, h) * 0.05;
+            konteks.font = `${Math.min(w, h) * 0.06}px serif`;
+            konteks.textAlign = 'center';
+            konteks.textBaseline = 'middle';
+            konteks.fillText('💕', jarak, jarak);
+            konteks.fillText('💕', w - jarak, jarak);
+            konteks.fillText('💕', jarak, h - jarak);
+            konteks.fillText('💕', w - jarak, h - jarak);
+            konteks.font = `bold ${Math.min(w, h) * 0.045}px "Great Vibes"`;
+            konteks.fillStyle = '#E63963';
+            konteks.fillText('💝 Kenangan Kita 💝', w / 2, h - jarak / 2);
+            konteks.strokeStyle = '#FFD6E0';
+            konteks.lineWidth = jarak / 2;
+            konteks.strokeRect(jarak / 4, jarak / 4, w - jarak / 2, h - jarak / 2);
+        }
+
+        function ambilUlang() {
+            bukaKamera();
+            fotoTerambil = null;
+        }
+
+        function simpanFotoSendiri() {
+            if (!fotoTerambil) return alert('📸 Ambil foto dulu ya!');
+            const link = document.createElement('a');
+            link.download = 'foto-' + new Date().toLocaleDateString('id-ID') + '.jpg';
+            link.href = fotoTerambil;
+            link.click();
+            alert('✅ Foto tersimpan! Simpan sebanyak yang dibutuhkan lalu unggah di bawah ya 💝');
+        }
+
+        // === BAGIAN GABUNG KOLASE 2×2 ===
+        function bacaFoto1(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = new Image();
+                img.onload = () => { foto1 = img; cekBuatKolase(); };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        function bacaFoto2(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = new Image();
+                img.onload = () => { foto2 = img; cekBuatKolase(); };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        function bacaFoto3(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = new Image();
+                img.onload = () => { foto3 = img; cekBuatKolase(); };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        function bacaFoto4(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = new Image();
+                img.onload = () => { foto4 = img; cekBuatKolase(); };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function cekBuatKolase() {
+            if (foto1 && foto2 && foto3 && foto4) {
+                buatKolase();
+                document.getElementById('wadahKolase').classList.remove('hidden');
+                document.getElementById('infoBelumLengkap').classList.add('hidden');
+            }
+        }
+
+        function buatKolase() {
+            const lebar = 800;
+            const tinggi = 900;
+            canvasKolase.width = lebar;
+            canvasKolase.height = tinggi;
+
+            // Latar belakang lembut
+            ctxKolase.fillStyle = '#FFF5F8';
+            ctxKolase.fillRect(0, 0, lebar, tinggi);
+
+            // Garis pembatas — 2 kolom & 2 baris
+            ctxKolase.strokeStyle = '#FFD6E0';
+            ctxKolase.lineWidth = 3;
+
+            // Garis vertikal tengah
+            ctxKolase.beginPath();
+            ctxKolase.moveTo(lebar / 2, 0);
+            ctxKolase.lineTo(lebar / 2, tinggi - 70);
+            ctxKolase.stroke();
+
+            // Garis horizontal tengah
+            ctxKolase.beginPath();
+            ctxKolase.moveTo(0, tinggi / 2 - 35);
+            ctxKolase.lineTo(lebar, tinggi / 2 - 35);
+            ctxKolase.stroke();
+
+            // Ukuran foto
+            const padding = 12;
+            const wFoto = lebar / 2 - padding * 2;
+            const hFoto = (tinggi - 80) / 2 - padding * 2;
+
+            // Susunan 2×2:
+            // ┌─────┐ ┌─────┐
+            // │ 1 │ │ 2 │
+            // └─────┘ └─────┘
+            // ┌─────┐ ┌─────┐
+            // │ 3 │ │ 4 │
+            // └─────┘ └─────┘
+
+            // Baris atas
+            gambarPasSesuai(ctxKolase, foto1, padding, padding, wFoto, hFoto);
+            gambarPasSesuai(ctxKolase, foto2, lebar / 2 + padding, padding, wFoto, hFoto);
+
+            // Baris bawah
+            gambarPasSesuai(ctxKolase, foto3, padding, tinggi / 2 - 35 + padding, wFoto, hFoto);
+            gambarPasSesuai(ctxKolase, foto4, lebar / 2 + padding, tinggi / 2 - 35 + padding, wFoto, hFoto);
+
+            // Teks di bawah
+            ctxKolase.font = `bold 32px "Great Vibes"`;
+            ctxKolase.fillStyle = '#E63963';
+            ctxKolase.textAlign = 'center';
+            ctxKolase.fillText('❤️ 4 Kenangan Kita ❤️', lebar / 2, tinggi - 25);
+        }
+
+        function gambarPasSesuai(konteks, gambar, x, y, w, h) {
+            const rasioAsli = gambar.width / gambar.height;
+            const rasioBaru = w / h;
+            let sx, sy, sw, sh;
+            if (rasioAsli > rasioBaru) {
+                sh = gambar.height;
+                sw = gambar.height * rasioBaru;
+                sy = 0;
+                sx = (gambar.width - sw) / 2;
+            } else {
+                sw = gambar.width;
+                sh = gambar.width / rasioBaru;
+                sx = 0;
+                sy = (gambar.height - sh) / 2;
+            }
+            konteks.drawImage(gambar, sx, sy, sw, sh, x, y, w, h);
+        }
+
+        function simpanKolase() {
+            if (!foto1 || !foto2 || !foto3 || !foto4) return alert('⚠️ Unggah keempat foto dulu ya!');
+            const link = document.createElement('a');
+            link.download = 'kolase-2x2-kenangan-' + new Date().toLocaleDateString('id-ID') + '.jpg';
+            link.href = canvasKolase.toDataURL('image/jpeg', 0.92);
+            link.click();
+            alert('✅ Kolase 2×2 tersimpan! Kirim ke pasangan ya 💝💕');
+        }
+
+        // === KIRIM WHATSAPP ===
         function kirimKeAlifah() {
             const nama = document.getElementById('nama').value;
             const pesan = document.getElementById('pesan').value;
             const nomor = "6281391013326";
-            const teks = `Halo Alifah Sayang ❤️\n\nAda pesan untukmu:\n\n📝 Dari: ${nama}\n💬 Isi: ${pesan}\n\nDikirim dari halaman Pesan Rahasia Kita 📌`;
-            const url = `https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`;
-            window.open(url, '_blank');
+            let teks = `Halo Alifah Sayang ❤️\n\n📝 Dari: ${nama}\n💬 Pesan: ${pesan}\n\n📸 4 foto kenangan kita tersusun rapi dalam 1 kolase! Silakan dilampirkan ya 💝💕`;
+            teks += `\n\n— Dikirim dari halaman Foto Bersama ❤️ —`;
+            window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`, '_blank');
         }
-
         function kirimKeZulfi() {
             const nama = document.getElementById('nama').value;
             const pesan = document.getElementById('pesan').value;
             const nomor = "6285762252190";
-            const teks = `Halo Zulfi Sayang ❤️\n\nAda pesan untukmu:\n\n📝 Dari: ${nama}\n💬 Isi: ${pesan}\n\nDikirim dari halaman Pesan Rahasia Kita 📌`;
-            const url = `https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`;
-            window.open(url, '_blank');
+            let teks = `Halo Zulfi Sayang ❤️\n\n📝 Dari: ${nama}\n💬 Pesan: ${pesan}\n\n📸 4 foto kenangan kita tersusun rapi dalam 1 kolase! Silakan dilampirkan ya 💝💕`;
+            teks += `\n\n— Dikirim dari halaman Foto Bersama ❤️ —`;
+            window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`, '_blank');
         }
     </script>
-
-    <!-- Kaki Halaman -->
-    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70">
-        Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri © 2026
-    </footer>
-
 </body>
 </html>
