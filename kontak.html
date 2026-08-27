@@ -86,7 +86,7 @@
         .kolase-box {
             background: #fff;
             border: 18px solid #fff;
-            border-bottom: 55px solid #fff;
+            border-bottom: 65px solid #fff;
             border-radius: 22px;
             box-shadow:
                 0 15px 40px rgba(230, 57, 99, 0.25),
@@ -95,16 +95,17 @@
             position: relative;
         }
         .kolase-box::after {
-            content: '❤️ 4 Kenangan Kita ❤️';
+            content: attr(data-teks);
             position: absolute;
-            bottom: -45px;
+            bottom: -55px;
             left: 0;
             right: 0;
             text-align: center;
             font-family: 'Great Vibes', cursive;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #E63963;
             letter-spacing: 1px;
+            line-height: 1.4;
         }
 
         video, canvas {
@@ -151,13 +152,21 @@
             margin-right: 10px;
             font-size: 0.9rem;
         }
+        .btn-templat {
+            transition: all 0.2s ease;
+        }
+        .btn-templat.aktif {
+            background: #E63963;
+            color: #fff;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="text-cinta-teks">
 
     <section class="pt-10 pb-4 text-center muncul">
         <h1 class="font-romantis text-3xl sm:text-4xl text-cinta-merahTua">❤️ 4 Foto Kenangan Kita</h1>
-        <p class="mt-2 text-cinta-teks/70 max-w-md mx-auto">Susunan 2×2 — berbaris ke bawah, cantik dan pas di HP 💝</p>
+        <p class="mt-2 text-cinta-teks/70 max-w-md mx-auto">Tersusun rapi 2×2 — tulisan di bawah bisa diganti atau diketik sendiri! 💝</p>
     </section>
 
     <section class="pb-10 max-w-lg mx-auto px-4">
@@ -167,9 +176,35 @@
             <h3 class="font-bold text-cinta-merahTua mb-2">📋 Cara Pakai:</h3>
             <div class="space-y-2 text-sm" style="counter-reset: langkah;">
                 <p class="langkah">Ambil foto → simpan (lakukan untuk 4 foto)</p>
-                <p class="langkah">Unggah keempat foto di kolom bawah</p>
-                <p class="langkah">Otomatis tersusun 2×2 → simpan & kirim 💝</p>
+                <p class="langkah">Pilih tulisan siap pakai atau ketik sendiri</p>
+                <p class="langkah">Unggah 4 foto → otomatis jadi kolase dengan tulisan pilihanmu 💝</p>
             </div>
+        </div>
+
+        <!-- ✏️ PILIH & UBAH TULISAN DI BAWAH KOLASE -->
+        <div class="form-kotak muncul mb-6" style="animation-delay: 0.15s">
+            <h3 class="font-romantis text-xl text-cinta-merahTua text-center mb-3">✏️ Tulisan di Bawah Kolase</h3>
+            
+            <!-- 3 Templat Siap Pakai -->
+            <p class="text-sm font-medium mb-2">Pilih tulisan siap pakai:</p>
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <button onclick="pakaiTemplat(1)" class="btn-templat px-2 py-2 bg-cinta-merahMuda rounded-full text-xs aktif" id="t1">
+                    ❤️ Kenangan Kita
+                </button>
+                <button onclick="pakaiTemplat(2)" class="btn-templat px-2 py-2 bg-cinta-merahMuda rounded-full text-xs" id="t2">
+                    💕 Walau Jauh Tetap Satu
+                </button>
+                <button onclick="pakaiTemplat(3)" class="btn-templat px-2 py-2 bg-cinta-merahMuda rounded-full text-xs" id="t3">
+                    💝 Selalu Bersama Selamanya
+                </button>
+            </div>
+
+            <!-- Ketik Sendiri -->
+            <p class="text-sm font-medium mb-2">Atau ketik tulisan sendiri:</p>
+            <input type="text" id="tulisanKolase" placeholder="Tulis tulisanmu di bawah foto..." 
+                class="w-full px-3 py-2 border border-cinta-merahMuda rounded-lg text-sm"
+                oninput="perbaruiTulisan()">
+            <p class="text-xs text-cinta-teks/60 mt-1">💡 Tulisan langsung muncul di kolase saat diketik!</p>
         </div>
 
         <!-- 📸 BAGIAN 1: AMBIL FOTO -->
@@ -239,7 +274,7 @@
             <!-- Hasil Kolase -->
             <div id="wadahKolase" class="hidden mt-6">
                 <h3 class="font-romantis text-xl text-cinta-merahTua text-center mb-4">✨ Kolase 2×2 Kenangan Kita!</h3>
-                <div class="kolase-box mb-4">
+                <div class="kolase-box mb-4" id="kotakKolase" data-teks="❤️ 4 Kenangan Kita ❤️">
                     <canvas id="hasilKolase" class="w-full"></canvas>
                 </div>
                 <div class="flex justify-center gap-3">
@@ -291,7 +326,39 @@
         let foto3 = null;
         let foto4 = null;
 
-        window.addEventListener('load', () => setTimeout(bukaKamera, 500));
+        // ✏️ 3 PILIHAN TULISAN SIAP PAKAI
+        const templat = [
+            "❤️ 4 Kenangan Kita ❤️",
+            "💕 Walau Jauh Tetap Satu 💕",
+            "💝 Selalu Bersama Selamanya 💝"
+        ];
+
+        window.addEventListener('load', () => {
+            setTimeout(bukaKamera, 500);
+            document.getElementById('tulisanKolase').value = templat[0];
+        });
+
+        // Pilih dari 3 templat
+        function pakaiTemplat(no) {
+            // Hapus tanda aktif semua tombol
+            document.querySelectorAll('.btn-templat').forEach(btn => btn.classList.remove('aktif'));
+            // Tandai tombol yang dipilih
+            document.getElementById('t' + no).classList.add('aktif');
+            // Isi ke kolom ketik
+            document.getElementById('tulisanKolase').value = templat[no - 1];
+            perbaruiTulisan();
+        }
+
+        // Perbarui tulisan di bawah kolase
+        function perbaruiTulisan() {
+            const teks = document.getElementById('tulisanKolase').value.trim() || "❤️ 4 Kenangan Kita ❤️";
+            const kotak = document.getElementById('kotakKolase');
+            kotak.setAttribute('data-teks', teks);
+            // Gambar ulang kolase jika sudah ada foto
+            if (foto1 && foto2 && foto3 && foto4) {
+                buatKolase();
+            }
+        }
 
         async function bukaKamera() {
             try {
@@ -434,41 +501,32 @@
             // Garis vertikal tengah
             ctxKolase.beginPath();
             ctxKolase.moveTo(lebar / 2, 0);
-            ctxKolase.lineTo(lebar / 2, tinggi - 70);
+            ctxKolase.lineTo(lebar / 2, tinggi - 85);
             ctxKolase.stroke();
 
             // Garis horizontal tengah
             ctxKolase.beginPath();
-            ctxKolase.moveTo(0, tinggi / 2 - 35);
-            ctxKolase.lineTo(lebar, tinggi / 2 - 35);
+            ctxKolase.moveTo(0, tinggi / 2 - 40);
+            ctxKolase.lineTo(lebar, tinggi / 2 - 40);
             ctxKolase.stroke();
 
             // Ukuran foto
             const padding = 12;
             const wFoto = lebar / 2 - padding * 2;
-            const hFoto = (tinggi - 80) / 2 - padding * 2;
+            const hFoto = (tinggi - 100) / 2 - padding * 2;
 
-            // Susunan 2×2:
-            // ┌─────┐ ┌─────┐
-            // │ 1 │ │ 2 │
-            // └─────┘ └─────┘
-            // ┌─────┐ ┌─────┐
-            // │ 3 │ │ 4 │
-            // └─────┘ └─────┘
-
-            // Baris atas
+            // Susunan 2×2
             gambarPasSesuai(ctxKolase, foto1, padding, padding, wFoto, hFoto);
             gambarPasSesuai(ctxKolase, foto2, lebar / 2 + padding, padding, wFoto, hFoto);
+            gambarPasSesuai(ctxKolase, foto3, padding, tinggi / 2 - 40 + padding, wFoto, hFoto);
+            gambarPasSesuai(ctxKolase, foto4, lebar / 2 + padding, tinggi / 2 - 40 + padding, wFoto, hFoto);
 
-            // Baris bawah
-            gambarPasSesuai(ctxKolase, foto3, padding, tinggi / 2 - 35 + padding, wFoto, hFoto);
-            gambarPasSesuai(ctxKolase, foto4, lebar / 2 + padding, tinggi / 2 - 35 + padding, wFoto, hFoto);
-
-            // Teks di bawah
+            // Ambil tulisan yang diketik/dipilih user
+            const teks = document.getElementById('tulisanKolase').value.trim() || "❤️ 4 Kenangan Kita ❤️";
             ctxKolase.font = `bold 32px "Great Vibes"`;
             ctxKolase.fillStyle = '#E63963';
             ctxKolase.textAlign = 'center';
-            ctxKolase.fillText('❤️ 4 Kenangan Kita ❤️', lebar / 2, tinggi - 25);
+            ctxKolase.fillText(teks, lebar / 2, tinggi - 30);
         }
 
         function gambarPasSesuai(konteks, gambar, x, y, w, h) {
@@ -495,7 +553,7 @@
             link.download = 'kolase-2x2-kenangan-' + new Date().toLocaleDateString('id-ID') + '.jpg';
             link.href = canvasKolase.toDataURL('image/jpeg', 0.92);
             link.click();
-            alert('✅ Kolase 2×2 tersimpan! Kirim ke pasangan ya 💝💕');
+            alert('✅ Kolase tersimpan dengan tulisanmu! 💝💕');
         }
 
         // === KIRIM WHATSAPP ===
