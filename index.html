@@ -36,44 +36,42 @@
     </script>
     <style type="text/tailwindcss">
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
+            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 50%, #FFE8F0 100%);
             min-height: 100vh;
             line-height: 1.7;
+            overflow-x: hidden;
         }
-
         .font-romantis {
             font-family: 'Great Vibes', cursive;
         }
-
-        /* Animasi Hati Berdetak */
+        /* ✨ Hati Utama Lebih Besar & Indah */
         .hati {
             display: inline-block;
-            width: 26px;
-            height: 22px;
+            width: 38px;
+            height: 32px;
             position: relative;
-            margin: 0 8px;
+            margin: 0 12px;
+            filter: drop-shadow(0 0 8px rgba(230, 57, 99, 0.4));
         }
         .hati::before,
         .hati::after {
             content: '';
             position: absolute;
             top: 0;
-            width: 13px;
-            height: 20px;
-            background: #E63963;
+            width: 19px;
+            height: 30px;
+            background: linear-gradient(to bottom, #FF8FA3, #E63963);
             border-radius: 50px 50px 0 0;
         }
         .hati::before {
-            left: 13px;
+            left: 19px;
             transform: rotate(-45deg);
             transform-origin: 0 100%;
         }
@@ -83,35 +81,143 @@
             transform-origin: 100% 100%;
         }
         .animasi-detak {
-            animation: detak 1.6s ease-in-out infinite;
+            animation: detak 1.4s ease-in-out infinite;
         }
         @keyframes detak {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(230, 57, 99, 0.4)); }
+            25% { transform: scale(1.15); }
+            50% { transform: scale(1.3); filter: drop-shadow(0 0 20px rgba(230, 57, 99, 0.7)); }
+            75% { transform: scale(1.15); }
         }
-
-        /* Animasi Muncul */
+        /* ✨ Animasi Muncul Lebih Halus */
         .muncul {
             opacity: 0;
-            transform: translateY(25px);
-            animation: fadeUp 1s ease-out forwards;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s ease-out forwards;
         }
         @keyframes fadeUp {
-            to {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
-
-        /* Tombol & Menu */
+        /* ✨ Tombol Lebih Cantik */
         .tombol {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
         .tombol:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(230, 57, 99, 0.25);
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(230, 57, 99, 0.35);
         }
-
+        /* ✨ Hati Mengambang LEBIH BESAR & BERCahaya */
+        .floating-heart {
+            position: fixed;
+            color: #FF8FA3;
+            opacity: 0;
+            z-index: 0;
+            animation: floatUp linear infinite;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(255, 143, 163, 0.5);
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.85;
+            }
+            85% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-120px) rotate(400deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+        /* ✨ Balon Cinta LEBIH BESAR & BERCahaya */
+        .ballon-love {
+            position: fixed;
+            z-index: 9999;
+            animation: ballonFloat 3.5s ease-out forwards;
+            pointer-events: none;
+            filter: drop-shadow(0 5px 15px rgba(230, 57, 99, 0.4));
+        }
+        @keyframes ballonFloat {
+            0% {
+                transform: translateY(100vh) scale(0.6);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(75vh) scale(1.15);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-15vh) scale(1.05);
+            }
+            100% {
+                transform: translateY(-120vh) scale(0.9);
+                opacity: 0;
+            }
+        }
+        .ballon-text {
+            background: linear-gradient(135deg, #FF8FA3, #E63963, #FF8FA3);
+            background-size: 200% 200%;
+            animation: gradasi 2s ease infinite;
+            color: white;
+            padding: 14px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 6px 20px rgba(230, 57, 99, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+        @keyframes gradasi {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* ✨ Efek Kilau di Bingkai */
+        .bingkai-cantik {
+            position: relative;
+            overflow: hidden;
+        }
+        .bingkai-cantik::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: kilau 3.5s linear infinite;
+        }
+        @keyframes kilau {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        /* ✨ Efek Berkedip Lembut */
+        .bercahaya {
+            animation: bercahaya 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes bercahaya {
+            0% { box-shadow: 0 0 15px rgba(230, 57, 99, 0.2); }
+            100% { box-shadow: 0 0 30px rgba(230, 57, 99, 0.4), 0 0 50px rgba(255, 143, 163, 0.2); }
+        }
         /* Responsif untuk HP */
         @media (max-width: 480px) {
             .nama-pasangan {
@@ -126,55 +232,74 @@
                 font-size: 0.75rem;
                 padding: 0.3rem 0.6rem;
             }
+            .ballon-text {
+                font-size: 0.9rem;
+                padding: 12px 20px;
+            }
+            .hati {
+                width: 30px;
+                height: 26px;
+                margin: 0 8px;
+            }
+            .hati::before, .hati::after {
+                width: 15px;
+                height: 24px;
+            }
+            .hati::before { left: 15px; }
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body class="text-cinta-teks">
+    <!-- Hati Mengambang di Latar -->
+    <div id="floating-hearts"></div>
+    
+    <!-- Wadah Balon Cinta -->
+    <div id="ballon-container"></div>
 
     <!-- Navigasi Lengkap dengan Ikon -->
     <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
         <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
-                <a href="index.html" class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2" onclick="tampilkanBalon(event)">
                     <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
                     <span class="font-semibold text-base sm:text-lg">Beranda</span>
                 </a>
-
                 <!-- Menu Navigasi dengan Ikon yang Jelas -->
                 <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
-                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all" onclick="tampilkanBalon(event)">
                         <i class="fa fa-book"></i> Cerita Kita
                     </a>
-                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all" onclick="tampilkanBalon(event)">
                         <i class="fa fa-camera"></i> Galeri
                     </a>
-                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all" onclick="tampilkanBalon(event)">
                         <i class="fa fa-envelope"></i> Surat Cinta
                     </a>
-                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all" onclick="tampilkanBalon(event)">
                         <i class="fa fa-star"></i> Impian
                     </a>
-                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all" onclick="tampilkanBalon(event)">
                         <i class="fa fa-lock"></i> Pesan Rahasia
                     </a>
                 </div>
             </div>
         </div>
     </nav>
-
     <!-- Konten Utama -->
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 pt-36 pb-16">
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 pt-36 pb-16 content-wrapper">
         <div class="muncul w-full max-w-3xl mx-auto" style="animation-delay: 0.2s">
             <div class="flex justify-center items-center mb-5 sm:mb-6">
                 <div class="hati animasi-detak"></div>
                 <h1 class="font-romantis text-[clamp(2.4rem,8vw,4.2rem)] text-cinta-merahTua">Our Love</h1>
                 <div class="hati animasi-detak"></div>
             </div>
-
             <h2 class="font-romantis text-[clamp(1.8rem,7vw,3rem)] text-cinta-merahSedang mb-5 sm:mb-6">Forever Us</h2>
-
             <!-- Nama & Tanggal Lahir -->
-            <div class="bg-white/55 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-sm border border-cinta-merahMuda/50 mb-7 sm:mb-9">
+            <div class="bingkai-cantik bg-white/55 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-sm border border-cinta-merahMuda/50 mb-7 sm:mb-9 bercahaya">
                 <p class="nama-pasangan font-medium text-base sm:text-lg md:text-xl text-cinta-teks leading-relaxed">
                     <i class="fa fa-user text-cinta-merahSedang mr-2"></i>Muhammad Zulfi <br>
                     <span class="text-cinta-merahSedang font-normal text-sm sm:text-base">(28 April 2006)</span>
@@ -185,31 +310,95 @@
                     <span class="text-cinta-merahSedang font-normal text-sm sm:text-base">(29 Desember 2008)</span>
                 </p>
             </div>
-
             <p class="text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-cinta-teks/85 mb-9 sm:mb-11">
                 "halooo.... selamat datang di halaman kecil ini, tempat di mana semua ceritaa dann kenangan tertulis rapi di halaman ini"
                 <br><br>
                 <span class="font-medium text-cinta-merahTua">❤️ Love Story • Kisah Kita • Cerita Cinta ❤️</span>
             </p>
-
-            <div class="bg-white/65 backdrop-blur-sm p-6 sm:p-7 md:p-9 rounded-3xl shadow-md border border-cinta-merahMuda/55 max-w-xl mx-auto mb-9 sm:mb-11">
+            <div class="bingkai-cantik bg-white/65 backdrop-blur-sm p-6 sm:p-7 md:p-9 rounded-3xl shadow-md border border-cinta-merahMuda/55 max-w-xl mx-auto mb-9 sm:mb-11 bercahaya">
                 <h3 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua mb-4 sm:mb-5">Selamanya Kita</h3>
                 <p class="text-sm sm:text-base md:text-lg leading-relaxed">
                     Untuk <strong class="text-cinta-merahTua">My Beloved</strong> — terima kasih telah menjadi bagian dari setiap lembar hidupku.
                     Setiap detik yang kita lalui adalah <em class="text-cinta-merahSedang">Sweet Memories</em>, dan rasa ini akan selalu menjadi <strong class="text-cinta-merahTua">Endless Love</strong>.
                 </p>
             </div>
-
-            <a href="ourstory.html" class="tombol flex items-center justify-center gap-2 bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-7 sm:px-9 py-3 sm:py-3.5 rounded-full text-base sm:text-lg font-medium shadow-lg w-full sm:w-auto">
+            <a href="ourstory.html" class="tombol flex items-center justify-center gap-2 bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-7 sm:px-9 py-3 sm:py-3.5 rounded-full text-base sm:text-lg font-medium shadow-lg w-full sm:w-auto" onclick="tampilkanBalon(event)">
                 <i class="fa fa-book"></i> Mulai Jelajahi Cerita Kita
             </a>
         </div>
     </section>
-
     <!-- Kaki Halaman -->
-    <footer class="text-center pb-7 text-xs sm:text-sm text-cinta-teks/75">
+    <footer class="text-center pb-7 text-xs sm:text-sm text-cinta-teks/75 content-wrapper">
         Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri © 2026
     </footer>
 
+    <script>
+        // Pesan balon cinta
+        const pesanCinta = [
+            "Zahra cintaku ❤️",
+            "Zahra sayangg 🥰",
+            "Zahra akuhhh maniss 🫶",
+            "Zahra sayangkuu 💖",
+            "Cintaku selamanya Zahra 💗"
+        ];
+
+        // Hati mengambang LEBIH BESAR & BERCahaya
+        function buatHatiMengambang() {
+            const wadah = document.getElementById('floating-hearts');
+            const ikonHati = ['❤', '💕', '💗', '💖', '💘', '❤️‍🔥', '💝'];
+            
+            setInterval(() => {
+                const hati = document.createElement('div');
+                hati.className = 'floating-heart';
+                hati.innerText = ikonHati[Math.floor(Math.random() * ikonHati.length)];
+                hati.style.left = Math.random() * 100 + 'vw';
+                // Ukuran hati LEBIH BESAR: dari 25px sampai 45px
+                hati.style.fontSize = (Math.random() * 20 + 25) + 'px';
+                hati.style.animationDuration = (Math.random() * 3 + 7) + 's';
+                
+                wadah.appendChild(hati);
+                
+                setTimeout(() => {
+                    hati.remove();
+                }, 11000);
+            }, 600); // Lebih sering muncul
+        }
+
+        // Tampilkan balon cinta saat tombol diklik
+        function tampilkanBalon(event) {
+            event.preventDefault();
+            const linkTujuan = event.currentTarget.getAttribute('href');
+            const wadah = document.getElementById('ballon-container');
+            
+            pesanCinta.forEach((pesan, indeks) => {
+                setTimeout(() => {
+                    const balon = document.createElement('div');
+                    balon.className = 'ballon-love';
+                    balon.style.left = (10 + Math.random() * 75) + '%';
+                    
+                    const isiBalon = document.createElement('div');
+                    isiBalon.className = 'ballon-text';
+                    isiBalon.innerText = pesan;
+                    
+                    balon.appendChild(isiBalon);
+                    wadah.appendChild(balon);
+                    
+                    setTimeout(() => {
+                        balon.remove();
+                    }, 3500);
+                }, indeks * 450);
+            });
+
+            // Pindah halaman setelah animasi selesai
+            setTimeout(() => {
+                window.location.href = linkTujuan;
+            }, 4000);
+        }
+
+        // Jalankan animasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            buatHatiMengambang();
+        });
+    </script>
 </body>
 </html>

@@ -29,6 +29,51 @@
                         'sm': '480px',
                         'md': '768px',
                         'lg': '1024px'
+                    },
+                    animation: {
+                        'detak': 'detak 1.6s ease-in-out infinite',
+                        'detak-cepat': 'detak 1.2s ease-in-out infinite',
+                        'melayang': 'melayang 4s ease-in-out infinite',
+                        'melayang-slow': 'melayangSlow 5s ease-in-out infinite',
+                        'melayang-fast': 'melayangFast 3s ease-in-out infinite',
+                        'naik-dari-bawah': 'naikDariBawah 1s ease-out forwards',
+                        'muncul': 'muncul 0.8s ease-out forwards',
+                        'kelap-kelip': 'kelapKelip 2.5s ease-in-out infinite',
+                        'putar-lembut': 'putarLembut 8s linear infinite'
+                    },
+                    keyframes: {
+                        detak: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.25)' }
+                        },
+                        melayang: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        melayangSlow: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-35px)' }
+                        },
+                        melayangFast: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' }
+                        },
+                        naikDariBawah: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        muncul: {
+                            '0%': { opacity: '0', transform: 'translateY(25px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        kelapKelip: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '1' }
+                        },
+                        putarLembut: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' }
+                        }
                     }
                 }
             }
@@ -36,24 +81,37 @@
     </script>
     <style type="text/tailwindcss">
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
+            background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 50%, #FFF5F8 100%);
+            background-size: 400% 400%;
+            animation: gradasiLambat 15s ease infinite;
             min-height: 100vh;
             line-height: 1.8;
+            position: relative;
+            overflow-x: hidden;
         }
-
+        @keyframes gradasiLambat {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         .font-romantis {
             font-family: 'Great Vibes', cursive;
         }
-
+        /* Emot Melayang */
+        .emot-melayang {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.65;
+            filter: drop-shadow(0 2px 6px rgba(230, 57, 99, 0.15));
+        }
         /* Animasi Hati Berdetak */
         .hati {
             display: inline-block;
@@ -82,47 +140,82 @@
             transform: rotate(45deg);
             transform-origin: 100% 100%;
         }
-        .animasi-detak {
-            animation: detak 1.6s ease-in-out infinite;
-        }
-        @keyframes detak {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* Animasi Muncul */
-        .muncul {
-            opacity: 0;
-            transform: translateY(25px);
-            animation: fadeUp 0.8s ease-out forwards;
-        }
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Gaya Amplop & Surat */
+        /* Surat */
         .surat {
-            background: #fffdfb;
+            background: rgba(255, 253, 251, 0.9);
+            backdrop-filter: blur(8px);
             border: 1px solid #FFD6E0;
-            box-shadow: 0 8px 24px rgba(230, 57, 99, 0.15);
-            border-radius: 20px;
+            box-shadow: 
+                0 8px 24px rgba(230, 57, 99, 0.12),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .surat:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(230, 57, 99, 0.2);
+            transform: translateY(-6px) scale(1.015);
+            box-shadow: 
+                0 16px 40px rgba(230, 57, 99, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+            border-color: #FF8FA3;
         }
         .garis-hias {
-            background: linear-gradient(90deg, transparent, #FFD6E0, transparent);
+            background: linear-gradient(90deg, transparent, #FFD6E0, #E63963, #FFD6E0, transparent);
             height: 2px;
             margin: 1rem 0;
+            animation: lebarHalus 3s ease-in-out infinite alternate;
+            background-size: 200% 100%;
+            animation: gerakGaris 4s linear infinite;
         }
-
+        @keyframes gerakGaris {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .bintang-hias {
+            position: absolute;
+            color: #E63963;
+            opacity: 0.3;
+            font-size: 1.2rem;
+        }
+        /* Tombol */
+        .tombol-lembut {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .tombol-lembut::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        .tombol-lembut:hover::before {
+            left: 100%;
+        }
+        /* Navigasi */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #E63963;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after,
+        .nav-link.aktif::after {
+            width: 70%;
+        }
         /* Responsif Navigasi */
         @media (max-width: 768px) {
             .nav-menu {
@@ -138,31 +231,46 @@
     </style>
 </head>
 <body class="text-cinta-teks">
+    <!-- ✨ Elemen Melayang di Latar -->
+    <div class="emot-melayang text-4xl animate-melayang" style="left: 5%; bottom: 10%; animation-delay: 0s;">💕</div>
+    <div class="emot-melayang text-3xl animate-melayang-slow" style="left: 15%; bottom: 5%; animation-delay: 0.5s;">💗</div>
+    <div class="emot-melayang text-2xl animate-melayang-fast" style="left: 85%; bottom: 15%; animation-delay: 1s;">❤️</div>
+    <div class="emot-melayang text-4xl animate-melayang" style="left: 90%; bottom: 8%; animation-delay: 1.5s;">💝</div>
+    <div class="emot-melayang text-3xl animate-melayang-slow" style="left: 45%; bottom: 3%; animation-delay: 2s;">💞</div>
+    <div class="emot-melayang text-2xl animate-melayang-fast" style="left: 8%; bottom: 20%; animation-delay: 0.7s;">💓</div>
+    <div class="emot-melayang text-4xl animate-melayang" style="right: 6%; bottom: 25%; animation-delay: 1.2s;">💖</div>
+    <div class="emot-melayang text-3xl animate-melayang-slow" style="right: 18%; bottom: 12%; animation-delay: 0.8s;">🌹</div>
+    <div class="emot-melayang text-2xl animate-melayang-fast" style="left: 30%; bottom: 6%; animation-delay: 1.8s;">✨</div>
+    <div class="emot-melayang text-4xl animate-melayang" style="right: 35%; bottom: 18%; animation-delay: 2.5s;">🦋</div>
+    <div class="emot-melayang text-3xl animate-melayang-fast" style="left: 70%; bottom: 4%; animation-delay: 0.3s;">💫</div>
+    <div class="emot-melayang text-2xl animate-melayang-slow" style="right: 8%; bottom: 30%; animation-delay: 2.2s;">🤍</div>
+    <div class="emot-melayang text-xl animate-kelap-kelip" style="left: 25%; top: 30%; animation-delay: 0.4s;">✧</div>
+    <div class="emot-melayang text-lg animate-kelap-kelip" style="right: 20%; top: 40%; animation-delay: 1.1s;">✦</div>
+    <div class="emot-melayang text-xl animate-kelap-kelip" style="left: 75%; top: 25%; animation-delay: 1.7s;">✧</div>
+    <div class="emot-melayang text-lg animate-kelap-kelip" style="right: 30%; top: 60%; animation-delay: 2.3s;">✦</div>
 
-    <!-- Navigasi Lengkap Sama Seperti Beranda -->
+    <!-- Navigasi -->
     <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
         <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
-                <a href="index.html" class="flex items-center gap-2">
-                    <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl group-hover:scale-110 transition-transform"></i>
                     <span class="font-semibold text-base sm:text-lg">Beranda</span>
                 </a>
-
-                <!-- Menu Navigasi Lengkap -->
                 <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
-                    <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                    <a href="ourstory.html" class="nav-link flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
                         <i class="fa fa-book"></i> Cerita Kita
                     </a>
-                    <a href="galeri.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                    <a href="galeri.html" class="nav-link flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
                         <i class="fa fa-camera"></i> Galeri
                     </a>
-                    <a href="love.html" class="flex items-center gap-1.5 text-cinta-merahTua font-medium underline bg-cinta-merahMuda/40 text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg">
+                    <a href="love.html" class="nav-link aktif flex items-center gap-1.5 text-cinta-merahTua font-medium underline bg-cinta-merahMuda/40 text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg">
                         <i class="fa fa-envelope"></i> Surat Cinta
                     </a>
-                    <a href="dream.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                    <a href="dream.html" class="nav-link flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
                         <i class="fa fa-star"></i> Impian
                     </a>
-                    <a href="kontak.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
+                    <a href="kontak.html" class="nav-link flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
                         <i class="fa fa-lock"></i> Pesan Rahasia
                     </a>
                 </div>
@@ -171,42 +279,43 @@
     </nav>
 
     <!-- Judul Halaman -->
-    <section class="pt-32 pb-10 text-center muncul">
+    <section class="pt-32 pb-10 text-center muncul relative z-10">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex justify-center items-center gap-3 mb-4">
-                <i class="fa fa-envelope text-cinta-merahTua text-3xl sm:text-4xl"></i>
+                <i class="fa fa-envelope text-cinta-merahTua text-3xl sm:text-4xl animate-melayang-fast"></i>
                 <h1 class="font-romantis text-[clamp(2.2rem,7vw,3.5rem)] text-cinta-merahTua">Love Letters</h1>
-                <i class="fa fa-heart text-cinta-merahTua text-3xl sm:text-4xl animasi-detak"></i>
+                <i class="fa fa-heart text-cinta-merahTua text-3xl sm:text-4xl animate-detak"></i>
             </div>
-            <p class="text-base sm:text-lg text-cinta-teks/80 max-w-xl mx-auto">
+            <p class="text-base sm:text-lg text-cinta-teks/80 max-w-xl mx-auto animate-melayang">
                 Kata-kata, pesan, dan doa yang tulus untukmu ❤️
             </p>
         </div>
     </section>
 
     <!-- Isi Surat / Pesan -->
-    <section class="pb-20">
+    <section class="pb-20 relative z-10">
         <div class="container mx-auto px-4 sm:px-6 max-w-3xl">
-
             <!-- Surat 1 -->
             <div class="surat p-6 sm:p-8 mb-8 muncul" style="animation-delay: 0.2s">
-                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-3">Untuk My Beloved</h2>
+                <span class="bintang-hias top-4 right-4 animate-kelap-kelip">✧</span>
+                <span class="bintang-hias bottom-4 left-4 animate-kelap-kelip" style="animation-delay: 0.5s;">✦</span>
+                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-3">Untuk My Beloved <i class="fa fa-heart text-cinta-merahTua animate-detak text-lg"></i></h2>
                 <div class="garis-hias"></div>
                 <div class="text-justify text-sm sm:text-base leading-relaxed">
                     <p>
-                        Halo sayangku Alifah azzahra kusuma putri ,sayangg kuu zahraa❤️
+                        Halo sayangku Alifah Azzahra Kusuma Putri, sayangku Zahraa ❤️
                     </p>
                     <p class="mt-3">
-                       Dengan menulis dan membuat website ini itu bertujuan untuk membahagiakan sayangg aku ini sekaligus untuk ungkapan sayangg akuu ke sayangg di karenakan sayangg sudah mau hadir di alur cerita hidup aku mulai dari yang awal nya ngga kenal jadi kenal yang awal nya kang mba sekrang jadi sayangg sayangg kuu,itu tuh jadi moment yang ngga bakal aku lupakan kedepan nya kalo terus terusan sama sayangg aku ini yang cantik nya ngga ada lawan nyaaa intinya cantikk di mata akuu dan keluarga aku khusus nya ibu aku yang sudah mengenal sayangg dan melihat sayangg pas lagi vc itu heheh  .
+                        Dengan menulis dan membuat website ini, tujuanku adalah untuk membahagiakan sayangku sekaligus mengungkapkan rasa sayangku kepadamu. Mulai dari yang awalnya tidak kenal jadi kenal, yang awalnya "Kak-Mba" sekarang jadi sayangku — itu adalah momen yang tidak akan pernah aku lupakan. Terima kasih sudah hadir di alur cerita hidupku, cantikmu tak ada lawan, sungguh cantik di mataku dan keluargaku, terutama Ibu yang sudah mengenal dan melihatmu saat kita video call hehe.
                     </p>
                     <p class="mt-3">
-                        Terima kasih telah menjadi pendengar yang baik, tempat berbagi cerita, dan sosok yang selalu mengerti. Terima kasih atas kesabaran, perhatian, dan rasa sayang yang kamu berikan selama ini. Setiap detik yang kita lalui bersama adalah kenangan indah yang tak akan pernah aku lupakan,walaupun kadang di setiap chatan itu pasti ada ajah masalah yang bikin sayang kesal ngembek dan bete tetapi dengan ada nya begitu tuh jadi keberuntungan aku sendiri hehe,bukane aku malah seneng sayangg ngambek,bedmood,dan kesal sama aku yaa tidak ,tetapi aku jadi merasakan yang namanya cinta itu dengan perilaku sayangg yang apa apa ne getet sama perilaku aku dan terus aku itu di ladenin dan tidak di tinggal begitu saja ,berarti sayangg itu bener bener tulus mencintai aku apa adanya dan menerima fedback suka aku dengan ikhlas.
+                        Terima kasih telah menjadi pendengar yang baik, tempat berbagi cerita, dan sosok yang selalu mengerti. Terima kasih atas kesabaran, perhatian, dan rasa sayang yang kamu berikan. Setiap detik bersama adalah kenangan indah. Walaupun kadang ada masalah yang bikin kamu kesal atau bete, justru dari situlah aku merasakan cinta yang tulus — kamu tetap meladeniku dan tidak pergi. Itu tandanya kamu mencintaiku apa adanya.
                     </p>
                     <p class="mt-3">
-                        Aku  akan selalu berusaha menjadi yang terbaik untuk sayangg zahra ini , agar aku bisa terus mendukung setiap impianmu, dan terus menjaga rasa cinta dan sayang aku ini selamanya. Semoga kita bisa terus melangkah berdampingan, melewati suka dan duka, hingga waktu yang sudah di tentukan nantinyaa ( semoga jadi jodoh dunia ahirat aamiin )
+                        Aku akan selalu berusaha menjadi yang terbaik untukmu, mendukung setiap impianmu, dan menjaga cinta ini selamanya. Semoga kita terus berjalan berdampingan, melewati suka dan duka, hingga waktu yang ditentukan. Semoga kita berjodoh dunia akhirat, aamiin 🤲💕
                     </p>
                     <p class="mt-6 text-right italic">
-                        Dengan segenap cinta dan kasih sayangg ,<br>
+                        Dengan segenap cinta dan kasih sayang,<br>
                         <span class="font-romantis text-xl text-cinta-merahTua">Muhammad Zulfi</span>
                     </p>
                 </div>
@@ -214,20 +323,22 @@
 
             <!-- Surat 2 -->
             <div class="surat p-6 sm:p-8 mb-8 muncul" style="animation-delay: 0.4s">
-                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-3">Pesan dari Hati</h2>
+                <span class="bintang-hias top-4 right-4 animate-kelap-kelip" style="animation-delay: 0.7s;">✧</span>
+                <span class="bintang-hias bottom-4 left-4 animate-kelap-kelip" style="animation-delay: 1.2s;">✦</span>
+                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-3">Pesan dari Hati <i class="fa fa-heart text-cinta-merahTua animate-detak-cepat text-lg"></i></h2>
                 <div class="garis-hias"></div>
                 <div class="text-justify text-sm sm:text-base leading-relaxed">
                     <p>
-                        Untukmu  sayanggg zahraa yang aku cintai dan sayangi ,
+                        Untukmu sayangku Zahraa yang aku cintai dan sayangi,
                     </p>
                     <p class="mt-3">
-                        Mungkin aku tidak selalu bisa mengerti kondisi ssayang ,perasaan sayangg setiap harinya  di karenakan jauh dan kita itu sedang LDR , tapi izinkan aku menyampaikan apa yang ada di hatiku yah sayangg . sayangg itu  adalah anugerah terindah yang Tuhan berikan untuk aku . Kehadiran sayagg di hidup aku itu  menjadi kekuatan dan alasan aku tersenyum setiap harinya,tetapi di karenakan pada tanggal 07/08/2026 pada jam 15.55 sampe jam 16.21 itu pesan dari sayangg yang sudah sayang ungkapkan ke aku itu minta break dulu karena banyak permasalahan pas di tempat pkl maka sayangg aku sendiri yangg minta untuk break duluu aku yaa nggak bisa memaksa untuk menolak yah sayangg ,tapi ingat sayanggg semoga break yang nanti mau di jalani itu tidak mengubah sifat dan perilaku kita untuk salingg menyayangi dan mencintai satu sama lain yah sayangg 
+                        Mungkin aku tidak selalu bisa mengerti perasaanmu setiap hari karena kita berjauhan, tapi izinkan aku sampaikan apa yang ada di hatiku. Kamu adalah anugerah terindah Tuhan bagiku. Kehadiranmu menjadi kekuatan dan alasanku tersenyum setiap hari. Aku ingat pesanmu tanggal 07/08/2026, jam 15.55–16.21 — saat kamu minta istirahat sejenak karena banyak hal yang sedang kamu hadapi. Aku tidak bisa memaksamu, aku menghormatimu. Tapi ingat, semoga jarak dan waktu ini tidak mengubah rasa cinta kita satu sama lain ya 💝
                     </p>
                     <p class="mt-3">
-                        Semoga rasa sayangg dan cinta ini tidak pernah pudar yah sayangg kuu di saat nanti break udah terjadi ,semoga semakin hari semakin kuat dan semakin dalam walaupun kadang ada pertengkaran yang pasti terjadi di hubungan kita ini . Semoga kita selalu diberi kemudahan, keikhlasan, dan keberkahan dalam setiap langkah yang kita pilih bersama.
+                        Semoga cinta kita tak pernah pudar, justru makin dalam dan kuat. Semoga kita selalu diberi kemudahan, keikhlasan, dan keberkahan di setiap langkah kita.
                     </p>
                     <p class="mt-3">
-                        Ingatlah, di mana pun dan kapan pun, ada aku yang akan selalu menyayangimu, dan mendukungmu. sayangg zahra tidak sendirian, karena sekarangg sayangg  dan aku udah punya keinginan terus saling mencitai dan menyayangi.
+                        Ingatlah, di mana pun dan kapan pun, ada aku yang akan selalu menyayangimu. Kamu tidak sendirian — kita saling memiliki dan mencintai.
                     </p>
                     <p class="mt-6 text-right italic">
                         Selamanya milikmu,<br>
@@ -238,41 +349,41 @@
 
             <!-- Surat 3 -->
             <div class="surat p-6 sm:p-8 muncul" style="animation-delay: 0.6s">
-                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-3">Doa untuk Kita</h2>
+                <span class="bintang-hias top-4 right-4 animate-kelap-kelip" style="animation-delay: 1.4s;">✧</span>
+                <span class="bintang-hias bottom-4 left-4 animate-kelap-kelip" style="animation-delay: 1.9s;">✦</span>
+                <h2 class="font-romantis text-2xl sm:text-3xl text-cinta-merahTua text-center mb-3">Doa untuk Kita 🤲</h2>
                 <div class="garis-hias"></div>
                 <div class="text-justify text-sm sm:text-base leading-relaxed">
                     <p>
                         Ya Allah,
                     </p>
                     <p class="mt-3">
-                        Terima kasih atas pertemuan yang Engkau takdirkan antara aku dan  ❤️ zahra ❤️. Jadikanlah hubungan ini selalu dalam ridha-Mu, penuh kebahagiaan, kedamaian, dan keberkahan.
+                        Terima kasih atas pertemuan yang Engkau takdirkan antara aku dan ❤️ Zahra ❤️. Jadikanlah hubungan ini selalu dalam ridha-Mu, penuh kebahagiaan, kedamaian, dan keberkahan.
                     </p>
                     <p class="mt-3">
                         Lindungilah dia selalu, jaga hatinya, sehatkan tubuhnya, dan mudahkanlah segala urusannya. Jadikanlah kami saling melengkapi, saling mengingatkan dalam kebaikan, dan saling menguatkan satu sama lain.
                     </p>
                     <p class="mt-3">
-                        Semoga kisah cinta kita ini menjadi jalan menuju kebahagiaan dunia dan akhirat, serta menjadi kenangan indah yang abadi selamanya.
+                        Semoga kisah cinta kami menjadi jalan menuju kebahagiaan dunia dan akhirat, serta menjadi kenangan indah yang abadi selamanya.
                     </p>
-                    <p class="mt-6 text-right italic">
+                    <p class="mt-6 text-right italic font-romantis text-xl text-cinta-merahTua">
                         ❤️ Forever Us ❤️
                     </p>
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- Navigasi Bawah -->
-    <section class="text-center pb-16">
-        <a href="galeri.html" class="inline-block bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-8 py-3 rounded-full text-base sm:text-lg font-medium shadow-lg hover:shadow-xl transition-shadow">
+    <section class="text-center pb-16 relative z-10">
+        <a href="galeri.html" class="tombol-lembut inline-block bg-gradient-to-r from-cinta-merahSedang to-cinta-merahTua text-white px-8 py-3 rounded-full text-base sm:text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all">
             📸 Lihat Kembali Kenangan
         </a>
     </section>
 
     <!-- Kaki Halaman -->
-    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70">
-        Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri
+    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70 relative z-10">
+        Dibuat dengan penuh cinta <i class="fa fa-heart text-cinta-merahTua animate-detak"></i> | Muhammad Zulfi & Alifah Azzahra Kusuma Putri
     </footer>
-
 </body>
 </html>

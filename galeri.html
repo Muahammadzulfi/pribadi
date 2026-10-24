@@ -36,25 +36,23 @@
     </script>
     <style type="text/tailwindcss">
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #FFF5F8 0%, #F0E6FF 100%);
             min-height: 100vh;
             line-height: 1.6;
+            overflow-x: hidden;
         }
-
         .font-romantis {
             font-family: 'Great Vibes', cursive;
         }
 
-        /* Animasi Hati Berdetak */
+        /* === ANIMASI HATI BERDETAK === */
         .hati {
             display: inline-block;
             width: 24px;
@@ -87,69 +85,133 @@
         }
         @keyframes detak {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.25); }
         }
 
-        /* Animasi Muncul */
+        /* === ANIMASI MASUK HALAMAN === */
         .muncul {
             opacity: 0;
-            transform: translateY(25px);
-            animation: fadeUp 0.8s ease-out forwards;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease-out forwards;
         }
         @keyframes fadeUp {
-            to {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
-        /* Gaya Item Foto & Video */
+        /* === ANIMASI LAMAN MUNCUL AWAL === */
+        .muncul-laman {
+            animation: munculLaman 1.2s ease-out forwards;
+        }
+        @keyframes munculLaman {
+            0% {
+                opacity: 0;
+                transform: scale(0.92);
+                filter: blur(4px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* === EMOTIKON CINTA YANG MENGAMBANG === */
+        .emot-cinta {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10;
+            font-size: 1.25rem;
+            animation: naikMengambang linear forwards;
+        }
+        @keyframes naikMengambang {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            20% {
+                transform: translateY(-20vh) rotate(15deg) scale(1.1);
+            }
+            40% {
+                transform: translateY(-40vh) rotate(-10deg) scale(1);
+            }
+            60% {
+                transform: translateY(-60vh) rotate(8deg) scale(1.05);
+            }
+            80% {
+                opacity: 0.7;
+                transform: translateY(-80vh) rotate(-5deg) scale(0.95);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-110vh) rotate(10deg) scale(0.8);
+            }
+        }
+
+        /* === BERKEDIPAN LEMBUT === */
+        .berkedip {
+            animation: berkedip 2.5s ease-in-out infinite;
+        }
+        @keyframes berkedip {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* === GAYA ITEM FOTO & VIDEO === */
         .media-item {
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
             position: relative;
         }
         .media-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(230, 57, 99, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 18px 30px rgba(230, 57, 99, 0.25);
         }
         .media-item img,
         .media-item video {
-            transition: transform 0.4s ease;
+            transition: transform 0.5s ease;
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
         .media-item:hover img,
         .media-item:hover video {
-            transform: scale(1.08);
+            transform: scale(1.12);
         }
 
-        /* Ikon Putar di Video */
+        /* === IKON PUTAR DI VIDEO === */
         .play-icon {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.85);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
             color: #E63963;
             z-index: 2;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(230, 57, 99, 0.2);
         }
         .media-item:hover .play-icon {
             background: #fff;
-            transform: translate(-50%, -50%) scale(1.1);
+            transform: translate(-50%, -50%) scale(1.15);
+            box-shadow: 0 6px 16px rgba(230, 57, 99, 0.3);
         }
 
-        /* Modal Layar Penuh */
+        /* === MODAL LAYAR PENUH === */
         .modal {
             display: none;
             position: fixed;
@@ -162,6 +224,11 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            animation: munculModal 0.3s ease-out forwards;
+        }
+        @keyframes munculModal {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         .modal-konten {
             max-width: 95%;
@@ -169,6 +236,11 @@
             object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+            animation: skalaMuncul 0.4s ease-out forwards;
+        }
+        @keyframes skalaMuncul {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
         .tutup {
             position: absolute;
@@ -178,15 +250,15 @@
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
+            transition: all 0.2s ease;
             z-index: 10000;
         }
         .tutup:hover {
             color: #FF8FA3;
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
 
-        /* Responsif Navigasi */
+        /* === RESPONSIF NAVIGASI === */
         @media (max-width: 768px) {
             .nav-menu {
                 flex-wrap: wrap;
@@ -200,8 +272,7 @@
         }
     </style>
 </head>
-<body class="text-cinta-teks">
-
+<body class="text-cinta-teks muncul-laman">
     <!-- Navigasi Lengkap -->
     <nav class="bg-white/75 backdrop-blur-md shadow-sm fixed w-full z-50">
         <div class="container mx-auto px-3 sm:px-5 md:px-8 py-3">
@@ -210,7 +281,6 @@
                     <i class="fa fa-home text-cinta-merahTua text-lg sm:text-xl"></i>
                     <span class="font-semibold text-base sm:text-lg">Beranda</span>
                 </a>
-
                 <!-- Menu Navigasi Lengkap -->
                 <div class="nav-menu flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
                     <a href="ourstory.html" class="flex items-center gap-1.5 text-cinta-teks/80 hover:text-cinta-merahTua font-medium text-xs sm:text-sm md:text-base px-2.5 py-1.5 rounded-lg hover:bg-cinta-merahMuda/40 transition-all">
@@ -237,15 +307,18 @@
     <section class="pt-32 pb-6 text-center muncul">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex justify-center items-center gap-3 mb-4">
+                <span class="berkedip">💕</span>
                 <i class="fa fa-camera text-cinta-merahTua text-3xl sm:text-4xl"></i>
                 <h1 class="font-romantis text-[clamp(2.2rem,7vw,3.5rem)] text-cinta-merahTua">Gallery Kenangan</h1>
                 <i class="fa fa-film text-cinta-merahTua text-3xl sm:text-4xl"></i>
+                <span class="berkedip">💕</span>
             </div>
             <p class="text-base sm:text-lg text-cinta-teks/80 max-w-xl mx-auto mb-4">
-                Foto & Video kenangan indah Muhammad Zulfi & Alifah Azzahra Kusuma Putri ❤️
+                Foto & Video kenangan indah Muhammad Zulfi & Alifah Azzahra Kusuma Putri 
+                <span class="hati animasi-detak"></span>
             </p>
             <!-- Tombol Link Google Drive -->
-            <a href="https://drive.google.com/drive/folders/1o4oU2Os7R3-pA1xCHw_3313N1jWUFfwi?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-cinta-merahSedang hover:bg-cinta-merahTua text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow">
+            <a href="https://drive.google.com/drive/folders/1o4oU2Os7R3-pA1xCHw_3313N1jWUFfwi?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-cinta-merahSedang hover:bg-cinta-merahTua text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow hover:shadow-lg hover:scale-105 active:scale-95">
                 <i class="fa fa-google-drive"></i> Lihat Semua Foto Lengkap di Google Drive
             </a>
         </div>
@@ -255,38 +328,31 @@
     <section class="pb-20 pt-8">
         <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
-
                 <!-- === FOTO === -->
                 <!-- Foto 1 -->
                 <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/f1.jpeg')" style="animation-delay: 0.2s">
                     <img src="assets/images/f1.jpeg" alt="Kenangan 1" class="h-44 sm:h-48 rounded-xl">
                 </div>
-
                 <!-- Foto 2 -->
                 <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/f1 (2).jpeg')" style="animation-delay: 0.3s">
                     <img src="assets/images/f1 (2).jpeg" alt="Kenangan 2" class="h-44 sm:h-48 rounded-xl">
                 </div>
-
                 <!-- Foto 3 -->
                 <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/f1 (3).jpeg')" style="animation-delay: 0.4s">
                     <img src="assets/images/f1 (3).jpeg" alt="Kenangan 3" class="h-44 sm:h-48 rounded-xl">
                 </div>
-
                 <!-- Foto 4 -->
                 <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/foto3.jpg.jpeg')" style="animation-delay: 0.5s">
                     <img src="assets/images/foto3.jpg.jpeg" alt="Kenangan 4" class="h-44 sm:h-48 rounded-xl">
                 </div>
-
                 <!-- Foto 5 -->
                 <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/bakso.jpg')" style="animation-delay: 0.6s">
                     <img src="assets/images/bakso.jpg" alt="Kenangan 5" class="h-44 sm:h-48 rounded-xl">
                 </div>
-
                 <!-- Foto 6 -->
                 <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('foto', 'assets/images/foto4.jpg')" style="animation-delay: 0.7s">
                     <img src="assets/images/foto4.jpg" alt="Kenangan 6" class="h-44 sm:h-48 rounded-xl">
                 </div>
-
                 <!-- === VIDEO === -->
                 <!-- Video 1 -->
                 <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('video', 'assets/images/VID-20260630-WA0347.mp4')" style="animation-delay: 0.8s">
@@ -295,7 +361,6 @@
                         Browser tidak mendukung video
                     </video>
                 </div>
-
                 <!-- Video 2 -->
                 <div class="media-item muncul bg-white p-3 rounded-2xl shadow-md border border-cinta-merahMuda/40" onclick="bukaMedia('video', 'assets/images/Video dari Muhammad Zulfi.mp4')" style="animation-delay: 0.9s">
                     <div class="play-icon"><i class="fa fa-play"></i></div>
@@ -303,7 +368,6 @@
                         Browser tidak mendukung video
                     </video>
                 </div>
-
             </div>
         </div>
     </section>
@@ -321,13 +385,52 @@
         const imgPenuh = document.getElementById('gambarPenuh');
         const vidPenuh = document.getElementById('videoPenuh');
 
+        // === DAFTAR EMOTIKON CINTA ===
+        const daftarEmot = ['❤️', '💕', '💗', '💖', '💘', '💝', '🥰', '😍', '💑', '💞', '🌹', '✨', '💫', '⭐', '🦋', '🌸', '💐'];
+
+        // === FUNGSI BUAT EMOTIKON TERBANG ===
+        function buatEmotTerbang() {
+            const emot = document.createElement('span');
+            emot.className = 'emot-cinta';
+            emot.innerText = daftarEmot[Math.floor(Math.random() * daftarEmot.length)];
+            
+            // Posisi acak di bawah layar
+            const posisiX = Math.random() * 90 + 5; // 5% - 95%
+            const ukuran = Math.random() * 1 + 0.8; // 0.8rem - 1.8rem
+            const durasi = Math.random() * 4 + 5; // 5 - 9 detik
+            const mundur = Math.random() * 2; // penundaan
+            
+            emot.style.left = `${posisiX}%`;
+            emot.style.bottom = '-50px';
+            emot.style.fontSize = `${ukuran}rem`;
+            emot.style.animationDuration = `${durasi}s`;
+            emot.style.animationDelay = `${mundur}s`;
+            
+            document.body.appendChild(emot);
+            
+            // Hapus setelah selesai
+            setTimeout(() => emot.remove(), (durasi + mundur) * 1000);
+        }
+
+        // === JALANKAN EMOT TERBANG SAAT LAMAN DIBUKA ===
+        for (let i = 0; i < 12; i++) {
+            setTimeout(buatEmotTerbang, i * 250);
+        }
+        // Lanjutkan secara berkala
+        setInterval(buatEmotTerbang, 1200);
+
         // Fungsi buka media (foto atau video)
         function bukaMedia(jenis, sumber) {
+            // Tambah efek saat diklik
+            for (let i = 0; i < 5; i++) {
+                setTimeout(buatEmotTerbang, i * 100);
+            }
+            
             // Reset tampilan sebelumnya
             imgPenuh.style.display = 'none';
             vidPenuh.style.display = 'none';
             vidPenuh.pause();
-
+            
             if (jenis === 'foto') {
                 imgPenuh.src = sumber;
                 imgPenuh.style.display = 'block';
@@ -335,7 +438,6 @@
                 vidPenuh.src = sumber;
                 vidPenuh.style.display = 'block';
             }
-
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -354,9 +456,8 @@
     </script>
 
     <!-- Kaki Halaman -->
-    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70">
-        Dibuat dengan penuh cinta ❤️ | Muhammad Zulfi & Alifah Azzahra Kusuma Putri
+    <footer class="text-center pb-6 text-xs sm:text-sm text-cinta-teks/70 muncul" style="animation-delay: 1s">
+        Dibuat dengan penuh cinta <span class="berkedip">❤️</span> | Muhammad Zulfi & Alifah Azzahra Kusuma Putri
     </footer>
-
 </body>
 </html>
